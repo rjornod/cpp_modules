@@ -2,5 +2,5 @@
 
 class PhoneBook {
 	public:
-		Contact contact[3];
+		Contact contact[8];
 };

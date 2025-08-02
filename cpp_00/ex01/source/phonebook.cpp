@@ -14,7 +14,12 @@ void add_contact(int i, PhoneBook &phonebook)
 	std::cout << "Nickname?\n";
 	std::cin >> phonebook.contact[i].nickname;
 	std::cout << "Phone number?\n";
-	std::cin >> phonebook.contact[i].phoneNumber;
+	while (!(std::cin >> phonebook.contact[i].phoneNumber))
+	{
+		std::cout << "Invalid phone number, try again.\n";
+		std::cin.clear();
+		std::cin.ignore(1000, '\n');
+	}
 	std::cout << "Darkest Secret?\n";
 	std::cin >> phonebook.contact[i].darkestSecret;
 }
@@ -22,18 +27,31 @@ void add_contact(int i, PhoneBook &phonebook)
 void	search_contact(PhoneBook &phonebook)
 {
 	int			index;
+	int 		i; 
 
-	for (int i = 0; i < 8 && !phonebook.contact[i].firstName.empty(); i++)
+	for (i = 0; i < 8 && !phonebook.contact[i].firstName.empty(); i++)
 	{
-		std::cout << phonebook.contact[i].firstName << " | ";
+		std::cout << "|         " << i << "|";
+		if (phonebook.contact[i].firstName.length() > 10)
+			std::cout << phonebook.contact[i].firstName.substr(0,9) << ".|";
+		else
+		{
+			int len = phonebook.contact[i].firstName.length();
+			for (int i = 0; i < 10 - len; i++)
+				std::cout << " ";
+			std::cout << phonebook.contact[i].firstName << "|";
+		}
 		std::cout << phonebook.contact[i].lastName << " | ";
-		std::cout << phonebook.contact[i].nickname << " | ";
-		std::cout << phonebook.contact[i].phoneNumber << " | ";
-		std::cout << phonebook.contact[i].darkestSecret << "\n";
+		std::cout << phonebook.contact[i].nickname << "|\n";
 	}
 	std::cout << "which contact do you want to search?\n";
-	std::cin >> index;
-	if (index <= '0' || index >= '9')
+	while (!(std::cin >> index))
+	{
+		std::cout << "Invalid input\n";
+		std::cin.clear();
+		std::cin.ignore(1000, '\n');
+	}
+	if (index < 0 || index >= i)
 	{
 		std::cout << "Invalid index\n";
 		return;
@@ -63,7 +81,7 @@ int main()
 		std::cin >> command;
 		if (command == "ADD" || command == "add")
 		{
-			if (i == 3)
+			if (i == 8)
 				i = 0;
 			add_contact(i++, phonebook);
 		}
