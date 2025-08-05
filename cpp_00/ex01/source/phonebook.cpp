@@ -2,26 +2,32 @@
 #include "../include/PhoneBook.hpp"
 #include <ctype.h>
 
+std::string	add_field(std::string input)
+{
+	do {
+			std::getline(std::cin >> std::ws, input);
+			if (std::cin.eof())
+				exit(EXIT_FAILURE);
+	}
+	while (input.empty());
+	return (input);
+}
 
 void add_contact(int i, PhoneBook &phonebook)
 {
+	std::string	input;
 
 	std::cout << "adding the " << i << " contact\n";
 	std::cout << "First name?\n";
-	std::cin >> phonebook.contact[i].firstName;
+	phonebook.contact[i].firstName = add_field(input);
 	std::cout << "Last name?\n";
-	std::cin >> phonebook.contact[i].lastName;
+	phonebook.contact[i].lastName = add_field(input);
 	std::cout << "Nickname?\n";
-	std::cin >> phonebook.contact[i].nickname;
+	phonebook.contact[i].nickname = add_field(input);
 	std::cout << "Phone number?\n";
-	while (!(std::cin >> phonebook.contact[i].phoneNumber))
-	{
-		std::cout << "Invalid phone number, try again.\n";
-		std::cin.clear();
-		std::cin.ignore(1000, '\n');
-	}
+	phonebook.contact[i].phoneNumber = add_field(input);
 	std::cout << "Darkest Secret?\n";
-	std::cin >> phonebook.contact[i].darkestSecret;
+	phonebook.contact[i].darkestSecret = add_field(input);
 }
 
 void	truncate(std::string string)
@@ -45,6 +51,9 @@ void print_title()
     std::cout << "|  __/| | | | (_) | | | |  __/ |_) | (_) | (_) |   < \n";
     std::cout << "|_|   |_| |_|\\___/|_| |_|\\___|____/ \\___/ \\___/|_|\\_\\\n";
 	std::cout << "\n";
+	std::cout << "---------------------------------------------\n";
+	std::cout << "|     INDEX|FIRST NAME| LAST NAME|  NICKNAME|\n";
+	std::cout << "---------------------------------------------\n";
 }
 
 void	search_contact(PhoneBook &phonebook)
@@ -60,17 +69,22 @@ void	search_contact(PhoneBook &phonebook)
 		truncate(phonebook.contact[i].lastName);
 		truncate(phonebook.contact[i].nickname);
 		std::cout << "\n";
+		std::cout << "---------------------------------------------\n";
 	}
 	std::cout << "\nwhich contact do you want to search?\n";
 	while (!(std::cin >> index))
 	{
+		if (std::cin.eof())
+			exit(EXIT_FAILURE);
 		std::cout << "Invalid input, try again\n";
 		std::cin.clear();
 		std::cin.ignore(1000, '\n');
 	}
+	if (std::cin.eof())
+		exit(EXIT_FAILURE);
 	if (index < 0 || index >= i)
 	{
-		std::cout << "Invalid index\n";
+		std::cout << "Contact doesn't exist\n\n";
 		return;
 	}
 	if (phonebook.contact[index].firstName.empty() || index > 7)
@@ -81,13 +95,12 @@ void	search_contact(PhoneBook &phonebook)
 		std::cout << "Last Name:" << phonebook.contact[index].lastName << "\n";
 		std::cout << "Nickname: " << phonebook.contact[index].nickname << "\n";
 		std::cout << "Phone Number: " << phonebook.contact[index].phoneNumber << "\n";
-		std::cout << "Darkest Secret:" << phonebook.contact[index].darkestSecret << "\n";
+		std::cout << "Darkest Secret:" << phonebook.contact[index].darkestSecret << "\n\n";
 	}
 }
 
 int main()
 {
-	// Contact contact;
 	PhoneBook 	phonebook;
 	std::string	command;
 	int			i = 0;
@@ -96,6 +109,9 @@ int main()
 	{
 		std::cout << "Commands available: ADD | SEARCH | EXIT\n";
 		std::cin >> command;
+		if (std::cin.eof())
+			exit(EXIT_FAILURE);
+		std::cin.ignore(1000, '\n');
 		if (command == "ADD" || command == "add")
 		{
 			if (i == 8)
@@ -103,14 +119,10 @@ int main()
 			add_contact(i++, phonebook);
 		}
 		else if (command == "SEARCH" || command == "search")
-		{
 			search_contact(phonebook);
-		}
 		else if (command == "EXIT" || command == "exit")
-		{
 			exit(EXIT_SUCCESS);
-		}
 		else
-			std::cout << "Wrong command! Try again\n";
+			std::cout << "Wrong command! Try again\n\n";
 	}
 }

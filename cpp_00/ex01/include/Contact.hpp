@@ -13,7 +13,7 @@ class Contact {
 		std::string lastName;
 		std::string nickname;
 		std::string darkestSecret;
-		int			phoneNumber;
+		std::string phoneNumber;
 };
 
 #endif
