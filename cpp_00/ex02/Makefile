@@ -1,9 +1,9 @@
 NAME = account
 
-CC = c++
+CC = c++ --std=c++98
 FLAGS = -Wall -Wextra -Werror 
 
-SRC = Account.cpp
+SRC = Account.cpp tests.cpp
 SRC_PATH = source
 OBJ_PATH = obj
 OBJ = $(SRC:%.cpp=$(OBJ_PATH)/%.o)
