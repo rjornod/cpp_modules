@@ -2,6 +2,10 @@
 #include "../include/PhoneBook.hpp"
 #include <ctype.h>
 
+/**
+	@brief Waits for the input from the user and returns it to be added to the phonebook
+	@param input what will be inputed by the user and returned to be added
+*/
 std::string	add_field(std::string input)
 {
 	do {
@@ -13,22 +17,31 @@ std::string	add_field(std::string input)
 	return (input);
 }
 
-void add_contact(int i, PhoneBook &phonebook)
+/*
+	Prompts the user for the first name, last name, nickname, phone number and darkest secret of the contact
+	A public function gets called for each prompt, allowing the private members to be set
+*/
+void PhoneBook::addContact(int i)
 {
 	std::string	input;
 
 	std::cout << "First name?\n";
-	phonebook.contact[i].setFirstName(add_field(input));
+	_contact[i].setFirstName(add_field(input));
 	std::cout << "Last name?\n";
-	phonebook.contact[i].setLastName(add_field(input));
+	_contact[i].setLastName(add_field(input));
 	std::cout << "Nickname?\n";
-	phonebook.contact[i].setNickname(add_field(input));
+	_contact[i].setNickname(add_field(input));
 	std::cout << "Phone number?\n";
-	phonebook.contact[i].setPhoneNumber(add_field(input));
+	_contact[i].setPhoneNumber(add_field(input));
 	std::cout << "Darkest Secret?\n";
-	phonebook.contact[i].setDarkestSecret(add_field(input));
+	_contact[i].setDarkestSecret(add_field(input));
 }
 
+/*
+	Checks if the given string has more than 10 characters
+	If it does it only prints the first 9 characters and adds a . after
+	If it doesnt it displays the string normally
+*/
 void	truncate(std::string string)
 {
 	if (string.length() > 10)
@@ -55,18 +68,23 @@ void print_title()
 	std::cout << "---------------------------------------------\n";
 }
 
-void	search_contact(PhoneBook &phonebook)
+/*
+	First displays a list of first name, last name, nickname of all the registered contacts
+	Then prompts the user which contact they want to see more of
+	If a user specifies a non existing index or other bad input an error message will be displayed	
+*/
+void	PhoneBook::searchContact()
 {
 	int			index;
 	int 		i; 
 
 	print_title();
-	for (i = 0; i < 8 && !phonebook.contact[i].getFirstName().empty(); i++)
+	for (i = 0; i < 8 && !_contact[i].getFirstName().empty(); i++)
 	{
 		std::cout << "|         " << i << "|";
-		truncate(phonebook.contact[i].getFirstName());
-		truncate(phonebook.contact[i].getLastName());
-		truncate(phonebook.contact[i].getNickname());
+		truncate(_contact[i].getFirstName());
+		truncate(_contact[i].getLastName());
+		truncate(_contact[i].getNickname());
 		std::cout << "\n";
 		std::cout << "---------------------------------------------\n";
 	}
@@ -86,21 +104,21 @@ void	search_contact(PhoneBook &phonebook)
 		std::cout << "Contact doesn't exist\n\n";
 		return;
 	}
-	if (phonebook.contact[index].getFirstName().empty() || index > 7)
+	if (_contact[index].getFirstName().empty() || index > 7)
 		std::cout << "Contact doesn't exist\n";
 	else
 	{
-		std::cout << "First Name: " << phonebook.contact[index].getFirstName() << "\n";
-		std::cout << "Last Name:" << phonebook.contact[index].getLastName() << "\n";
-		std::cout << "Nickname: " << phonebook.contact[index].getNickname() << "\n";
-		std::cout << "Phone Number: " << phonebook.contact[index].getPhoneNumber() << "\n";
-		std::cout << "Darkest Secret:" << phonebook.contact[index].getDarkestSecret() << "\n\n";
+		std::cout << "First Name: " << _contact[index].getFirstName() << "\n";
+		std::cout << "Last Name:" << _contact[index].getLastName() << "\n";
+		std::cout << "Nickname: " << _contact[index].getNickname() << "\n";
+		std::cout << "Phone Number: " << _contact[index].getPhoneNumber() << "\n";
+		std::cout << "Darkest Secret:" << _contact[index].getDarkestSecret() << "\n\n";
 	}
 }
 
 int main()
 {
-	PhoneBook 	phonebook;
+	PhoneBook	phonebook;
 	std::string	command;
 	int			i = 0;
 
@@ -115,10 +133,10 @@ int main()
 		{
 			if (i == 8)
 				i = 0;
-			add_contact(i++, phonebook);
+			phonebook.addContact(i++);
 		}
 		else if (command == "SEARCH" || command == "search")
-			search_contact(phonebook);
+			phonebook.searchContact();
 		else if (command == "EXIT" || command == "exit")
 			exit(EXIT_SUCCESS);
 		else

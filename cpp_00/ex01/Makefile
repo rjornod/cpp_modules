@@ -3,7 +3,7 @@ NAME = phonebook
 CC = c++
 FLAGS = -Wall -Wextra -Werror 
 
-SRC = phonebook.cpp Contact.cpp
+SRC = phonebook.cpp contact.cpp
 SRC_PATH = source
 OBJ_PATH = obj
 OBJ = $(SRC:%.cpp=$(OBJ_PATH)/%.o)

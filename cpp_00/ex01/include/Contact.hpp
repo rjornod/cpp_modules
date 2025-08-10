@@ -1,10 +1,13 @@
 #ifndef CONTACT_HPP
 #define CONTACT_HPP
 
+
 /*
-first name, last name, nickname, phone number, and
-darkest secret
+		-Defines the contact class.
+		-It has private members and public getters and setters that allow
+	those private members to be accessed and modified.
 */
+
 #include <iostream>
 
 class Contact {
