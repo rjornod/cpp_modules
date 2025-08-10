@@ -9,7 +9,7 @@ OBJ_PATH = obj
 OBJ = $(SRC:%.cpp=$(OBJ_PATH)/%.o)
 
 all: $(NAME)
-	@echo "Successfully created the executable"
+	
 
 $(OBJ_PATH): 
 	@mkdir -p $(OBJ_PATH)
@@ -19,6 +19,7 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.cpp | $(OBJ_PATH)
 
 $(NAME): $(OBJ)
 	@$(CC) $(FLAGS) $(OBJ) -o $(NAME)
+	@echo "Successfully created the executable"
  
 clean:
 	@rm -f $(OBJ)

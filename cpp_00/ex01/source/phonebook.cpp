@@ -17,17 +17,16 @@ void add_contact(int i, PhoneBook &phonebook)
 {
 	std::string	input;
 
-	std::cout << "adding the " << i << " contact\n";
 	std::cout << "First name?\n";
-	phonebook.contact[i].firstName = add_field(input);
+	phonebook.contact[i].setFirstName(add_field(input));
 	std::cout << "Last name?\n";
-	phonebook.contact[i].lastName = add_field(input);
+	phonebook.contact[i].setLastName(add_field(input));
 	std::cout << "Nickname?\n";
-	phonebook.contact[i].nickname = add_field(input);
+	phonebook.contact[i].setNickname(add_field(input));
 	std::cout << "Phone number?\n";
-	phonebook.contact[i].phoneNumber = add_field(input);
+	phonebook.contact[i].setPhoneNumber(add_field(input));
 	std::cout << "Darkest Secret?\n";
-	phonebook.contact[i].darkestSecret = add_field(input);
+	phonebook.contact[i].setDarkestSecret(add_field(input));
 }
 
 void	truncate(std::string string)
@@ -62,12 +61,12 @@ void	search_contact(PhoneBook &phonebook)
 	int 		i; 
 
 	print_title();
-	for (i = 0; i < 8 && !phonebook.contact[i].firstName.empty(); i++)
+	for (i = 0; i < 8 && !phonebook.contact[i].getFirstName().empty(); i++)
 	{
 		std::cout << "|         " << i << "|";
-		truncate(phonebook.contact[i].firstName);
-		truncate(phonebook.contact[i].lastName);
-		truncate(phonebook.contact[i].nickname);
+		truncate(phonebook.contact[i].getFirstName());
+		truncate(phonebook.contact[i].getLastName());
+		truncate(phonebook.contact[i].getNickname());
 		std::cout << "\n";
 		std::cout << "---------------------------------------------\n";
 	}
@@ -87,15 +86,15 @@ void	search_contact(PhoneBook &phonebook)
 		std::cout << "Contact doesn't exist\n\n";
 		return;
 	}
-	if (phonebook.contact[index].firstName.empty() || index > 7)
+	if (phonebook.contact[index].getFirstName().empty() || index > 7)
 		std::cout << "Contact doesn't exist\n";
 	else
 	{
-		std::cout << "First Name: " << phonebook.contact[index].firstName << "\n";
-		std::cout << "Last Name:" << phonebook.contact[index].lastName << "\n";
-		std::cout << "Nickname: " << phonebook.contact[index].nickname << "\n";
-		std::cout << "Phone Number: " << phonebook.contact[index].phoneNumber << "\n";
-		std::cout << "Darkest Secret:" << phonebook.contact[index].darkestSecret << "\n\n";
+		std::cout << "First Name: " << phonebook.contact[index].getFirstName() << "\n";
+		std::cout << "Last Name:" << phonebook.contact[index].getLastName() << "\n";
+		std::cout << "Nickname: " << phonebook.contact[index].getNickname() << "\n";
+		std::cout << "Phone Number: " << phonebook.contact[index].getPhoneNumber() << "\n";
+		std::cout << "Darkest Secret:" << phonebook.contact[index].getDarkestSecret() << "\n\n";
 	}
 }
 
