@@ -4,6 +4,7 @@ CC = c++ --std=c++98
 FLAGS = -Wall -Wextra -Werror 
 
 SRC = Account.cpp tests.cpp
+HEADERS = include/Account.hpp
 SRC_PATH = source
 OBJ_PATH = obj
 OBJ = $(SRC:%.cpp=$(OBJ_PATH)/%.o)
@@ -13,7 +14,7 @@ all: $(NAME)
 $(OBJ_PATH): 
 	@mkdir -p $(OBJ_PATH)
 
-$(OBJ_PATH)/%.o: $(SRC_PATH)/%.cpp | $(OBJ_PATH) 
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.cpp $(HEADERS) | $(OBJ_PATH) 
 	@$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJ)
