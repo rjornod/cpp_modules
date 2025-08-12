@@ -5,4 +5,5 @@ megaphone
 references
 account
 .a.out
-output.log
+*.log
+zombie
