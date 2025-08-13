@@ -5,13 +5,17 @@
 class Zombie {
 	private:
 		std::string 	_name;
-		Zombie(void);
+		//Zombie(void);
 
 	public:
 		void			announce(void);
 		std::string		getName(void);
+		void			setName(std::string name);
 		Zombie(std::string name);
+		Zombie(void);
 		~Zombie(void);
-};
+	};
+	Zombie* zombieHorde( int N, std::string name );
+	
 
 #endif
