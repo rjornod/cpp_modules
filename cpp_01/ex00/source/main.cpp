@@ -7,9 +7,7 @@ int main(void)
 				<< std::endl;
 
 	Zombie* zombie1 = newZombie("Russell");
-	zombie1->announce();
 	Zombie* zombie2 = newZombie("Lu");
-	zombie2->announce();
 	delete zombie1;
 	delete zombie2;
 	std::cout	<<	std::endl

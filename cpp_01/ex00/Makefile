@@ -21,7 +21,7 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.cpp $(HEADERS) | $(OBJ_PATH)
 $(NAME): $(OBJ)
 	@$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 	@echo "Successfully created the executable"
-	
+
 clean:
 	@rm -f $(OBJ)
 	@rm -rf $(OBJ_PATH)
