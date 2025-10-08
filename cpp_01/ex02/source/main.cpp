@@ -9,8 +9,8 @@
 int	main()
 {
 	std::string brain = "HI THIS IS BRAIN";
-	std::string& stringREF = brain;
-	std::string* stringPTR = &brain; 
+	std::string &stringREF = brain;
+	std::string *stringPTR = &brain; 
 
 	std::cout	<< YELLOW
 			 	<< "════════ ADDRESSES ════════"
@@ -27,7 +27,7 @@ int	main()
 				<< &stringREF
 				<< std::endl
 				<< std::endl;
-	
+
 	std::cout 	<< BLUE
 				<< "════════ VALUES ════════"
 				<< WHITE
@@ -41,6 +41,7 @@ int	main()
 				<< std::endl;
 	std::cout 	<< "Value pointed to by stringREF: "
 				<< stringREF
+				<< std::endl
 				<< std::endl;
 }
 

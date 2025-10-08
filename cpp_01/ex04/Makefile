@@ -1,4 +1,4 @@
-NAME = brain
+NAME = sed
 
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++20
@@ -6,9 +6,11 @@ FLAGS = -Wall -Wextra -Werror -std=c++20
 SRC = main.cpp
 SRC_PATH = source
 OBJ_PATH = obj
+INC_PATH = include
 OBJ = $(SRC:%.cpp=$(OBJ_PATH)/%.o)
 
 all: $(NAME)
+	
 
 $(OBJ_PATH): 
 	@mkdir -p $(OBJ_PATH)

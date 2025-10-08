@@ -5,6 +5,7 @@
 int main()
 {
 	{
+		std::cout << "HUMAN BOB" << std::endl;
 		Weapon club = Weapon("crude spiked club");
 		HumanA bob("Bob", club);
 		bob.attack();

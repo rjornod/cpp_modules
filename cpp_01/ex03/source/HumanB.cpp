@@ -1,11 +1,25 @@
 #include <iostream>
-#include "Weapon.hpp"
+#include "../include/HumanB.hpp"
 
-class HumanB {
-	private:
-		std::string name;
-	public:
-		void	attack(std::string name, Weapon);
-		HumanB();
-		~HumanB();
+HumanB::HumanB(const std::string &name) : _name(name)
+{
+
+}
+
+HumanB::~HumanB(void)
+{
+
+}
+
+void HumanB::setWeapon(Weapon &weapon)
+{
+	_weapon = &weapon;
+}
+
+void HumanB::attack(void)
+{
+	std::cout	<< _name
+				<< " attacks with "
+				<< _weapon->getType()
+				<< std::endl;
 }

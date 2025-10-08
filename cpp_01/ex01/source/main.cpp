@@ -26,7 +26,7 @@ int main()
 				<< "════════ CALLING DESTRUCTORS ════════" 
 				<< WHITE 
 				<<std::endl;
-				
+
 	delete [] zombiehorde1;
 	delete [] zombiehorde2;
 }

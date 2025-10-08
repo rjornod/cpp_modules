@@ -10,12 +10,11 @@ void Weapon::setType(std::string type)
 	_type = type;
 }
 
-Weapon::Weapon()
+Weapon::Weapon(std::string weapon)
 {
-	std::cout << _type << " weapon created" << std::endl;
+	setType(weapon);
 }
 
 Weapon::~Weapon()
 {
-	std::cout << _type << " weapon destroyed" << std::endl;
 }

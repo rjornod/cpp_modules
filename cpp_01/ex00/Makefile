@@ -1,7 +1,7 @@
 NAME = zombie
 
 CC = c++
-FLAGS = -Wall -Wextra -Werror 
+FLAGS = -Wall -Wextra -Werror -std=c++20
 
 SRC = newZombie.cpp Zombie.cpp randomChump.cpp main.cpp
 HEADERS = include/Zombie.hpp

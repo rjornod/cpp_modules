@@ -1,7 +1,7 @@
 NAME = horde
 
 CC = c++
-FLAGS = -Wall -Wextra -Werror 
+FLAGS = -Wall -Wextra -Werror -std=c++20
 
 SRC = zombieHorde.cpp Zombie.cpp main.cpp
 HEADERS = include/Zombie.hpp

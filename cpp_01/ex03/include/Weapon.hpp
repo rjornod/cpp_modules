@@ -1,3 +1,5 @@
+#ifndef WEAPON_HPP
+#define WEAPON_HPP
 #include <iostream>
 
 class Weapon {
@@ -8,8 +10,10 @@ class Weapon {
 		const	std::string& getType() const;
 
 		//member function that sets the type using the value passed as a parameter 
-		void	setType(std::string type);
+		void	setType( std::string type );
 
-		Weapon();
+		Weapon(std::string weapon);
 		~Weapon();
-}
+};
+
+#endif
