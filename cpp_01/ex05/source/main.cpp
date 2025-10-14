@@ -2,9 +2,9 @@
 
 int main(int argc, char **argv)
 {
-	//(void)argc;
 	Harl harl;
 	std::string level;
+	
 	if (argc > 2)
 	{
 		std::cout << "Too many arguments" << std::endl;

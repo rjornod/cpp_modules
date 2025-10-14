@@ -20,8 +20,7 @@ void	Zombie::announce(void)
 
 Zombie::Zombie() : _name("")
 {
-	std::cout	<< getName()
-				<< "Zombie created"
+	std::cout	<< "Zombie created"
 				<<std::endl;
 }
 

@@ -6,14 +6,9 @@
 #define GREEN "\033[32m"
 #define YELLOW "\033[33m"
 
-int	errorCheck(std::ifstream &infile, int argc)
+int	argCheck(int argc)//std::ifstream &infile, int argc)
 {
-	if ( infile.fail() || !infile.is_open())
-	{
-		std::cout << RED << "Problem opening file" << WHITE << std::endl;
-		return (0);
-	}
-	if (argc < 3 || argc > 3)
+	if (argc != 4)
 	{
 		std::cout << RED << "Incorrect number of arguments provided" << WHITE << std::endl;
 		return (0);
@@ -21,8 +16,48 @@ int	errorCheck(std::ifstream &infile, int argc)
 	return (1);
 }
 
+int fileCheck(std::ifstream &infile, std::ofstream &outfile)
+{
+	if ( infile.fail() || !infile.is_open())
+	{
+		std::cout << RED << "Problem opening the infile" << WHITE << std::endl;
+		return (0);
+	}
+	if ( outfile.fail() || !outfile.is_open())
+	{
+		std::cout << RED << "Problem opening the outfile" << WHITE << std::endl;
+		return (0);
+	}
+	return (1);
+}
 
-/**
+std::string	replaceWord(std::ifstream &infile, std::string replacement_word, std::string search_word)
+{
+	std::string original_line;
+	std::string new_line;
+	size_t 		pos;
+	size_t 		start;
+
+	while (std::getline(infile, original_line))
+	{
+		pos = 0;
+		start = 0;
+		while ((pos = original_line.find(search_word, pos)) != std::string::npos)
+		{
+			new_line += original_line.substr(start, (pos - start));
+			new_line += (replacement_word);
+			
+			pos = pos + search_word.length();
+			start = pos;
+		}
+		new_line += original_line.substr(start);
+		new_line += "\n";
+	}
+	return new_line;
+
+}
+
+/*******************************************************************************************
  * 
  * 	Notes: 
  * 		+= and append() do the same thing (adding data at the end of a string)
@@ -30,48 +65,29 @@ int	errorCheck(std::ifstream &infile, int argc)
  * 	specifying indexes and lengths allowing only parts of a string to be appended
  * 		+= is limited to appending full strings
  * 
- */
+ * 	ifstream: "input file stream". is used to read data from files
+ * 	ofstream: "output file stream". used to output data to a file
+ * 	fstream: "file stream". can do both operations
+ * 
+ * 	find(): used to find a substring or character in a target string. if found return the position
+ * of the first character of the substring 
+ * 	npos: value returned by some functions like find() to indicate that a search operation did
+ * not find a match
+ *******************************************************************************************/
 int	main(int argc, char **argv)
 {
-	std::string new_file_name = argv[1]; // convert argv[1] (file name) to a string to be used in ofstream
+	if(!argCheck(argc))
+		exit(0);
+	std::string new_file_name = argv[1]; // convert argv[1] (file name) to a string so it can be used as the file name for the output file
 	std::ifstream infile(argv[1]);
-	if (!errorCheck(infile, argc))
-		return (0);
 	std::ofstream outfile(new_file_name.append(".replace"));
-	size_t pos = 0;
-	size_t start = 0;
-	std::string result;
+	std::string search_word = argv[2];
+	std::string replacement_word = argv[3];
 	
-	(void)argc;
-
-	if (infile.is_open() && outfile.is_open())
-	{
-		std::string line;
-		std::string search_word = argv[2];
-		std::string replace_word = argv[3];
-		std::string changed_line;
-
-		while (std::getline(infile, line))
-		{
-			pos = 0;
-			start = 0;
-			while ((pos = line.find(search_word, pos)) != std::string::npos)
-			{
-				result += line.substr(start, (pos - start));
-				result += (replace_word);
-				
-				pos = pos + search_word.length();
-				start = pos;
-			}
-			result += line.substr(start);
-			result += "\n";
-			std::cout << "result: " << result << std::endl;
-		}
-		outfile << result;
-	}
+	if(!fileCheck(infile, outfile))
+		exit(0);
 	else
-	{
-		std::cout << "Error opening files" << std::endl;
-		return (0);
-	}
+		outfile << replaceWord(infile, replacement_word, search_word);
+	outfile.close();
+	infile.close();
 }

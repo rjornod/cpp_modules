@@ -39,23 +39,23 @@ void Harl::error( void )
 
 /**
  * 
- * 	Here we create an array of 4 pointers to member functions - void (Harl::*member_functions[4])(void)
+ * 	Here we create an array of 4 pointers to member functions - void (Harl::*memb_functions[4])(void)
  * 	We use references to the functions because we do not want to execute them directly, we are storing them for later use
  * 	The member functions get called in case the parameter <level> is equal to one of the <levels> in our string array
- * 	this->member_functions[i]() - <this> points to the current object being called in complain (Harl object)
+ * 	this->memb_functions[i]() - <this> points to the current object being called in complain (Harl object)
  * 	Member functions need an object to work, hence why we use <this>
  * 
  */
 
 void Harl::complain( std::string level )
 {
-	void (Harl::*member_functions[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error}; //functions is an array of 4 pointers to member functions of the harl class
+	void (Harl::*memb_functions[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error}; //functions is an array of 4 pointers to member functions of the harl class
 	std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	for (int i = 0; i < 4; i++)
 	{
 		if (level == levels[i])
 		{
-			(this->*member_functions[i])();
+			(this->*memb_functions[i])();
 			return;			
 		}
 	}

@@ -6,24 +6,36 @@
 #define GREEN "\033[32m"
 #define YELLOW "\033[33m"
 
+/**
+ * 
+ * 	&stringREF: reference declaration. alternative name for <brain>. does not have its own memory location.
+ * printing &stringREF will give us the address of <brain> and
+ * printing stringREF will give use the value of <brain> because they are both the same
+ * 
+ * 	*stringPTR: gets the value at the address <stringPTR> points to
+ * returns actual data
+ * printing *stringPTR will give use the value of what <stringPTR> is pointing at (same as the value of <brain>)
+ * printing stringPTR will give use the address of what it's pointing at (same as the address of <brain>)
+ */
+
 int	main()
 {
 	std::string brain = "HI THIS IS BRAIN";
+	std::string *stringPTR = &brain;
 	std::string &stringREF = brain;
-	std::string *stringPTR = &brain; 
 
 	std::cout	<< YELLOW
 			 	<< "════════ ADDRESSES ════════"
 				<< WHITE
 				<< std::endl
 				<< std::endl;
-	std::cout 	<< "Address of string variable: " 
-				<< &brain 
+	std::cout 	<< "Address of string variable <brain>: "
+				<< &brain
+				<< std::endl; 
+	std::cout 	<< "Address of <stringPTR>: "
+				<< stringPTR
 				<< std::endl;
-	std::cout 	<< "Address of stringPTR: "
-				<< stringPTR 
-				<< std::endl;
-	std::cout 	<< "Address of stringREF: "
+	std::cout 	<< "Address of <stringREF>: "
 				<< &stringREF
 				<< std::endl
 				<< std::endl;
@@ -33,13 +45,13 @@ int	main()
 				<< WHITE
 				<< std::endl
 				<< std::endl;
-	std::cout 	<< "Value of the string brain: "
+	std::cout 	<< "Value of the string <brain>: "
 				<< brain
 				<< std::endl;
-	std::cout 	<< "Value pointed to by stringPTR: "
+	std::cout 	<< "Value pointed to by <stringPTR>: "
 				<< *stringPTR
 				<< std::endl;
-	std::cout 	<< "Value pointed to by stringREF: "
+	std::cout 	<< "Value pointed to by <stringREF>: "
 				<< stringREF
 				<< std::endl
 				<< std::endl;
