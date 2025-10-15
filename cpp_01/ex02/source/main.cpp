@@ -6,7 +6,7 @@
 #define GREEN "\033[32m"
 #define YELLOW "\033[33m"
 
-/**
+/** 
  * 
  * 	&stringREF: reference declaration. alternative name for <brain>. does not have its own memory location.
  * printing &stringREF will give us the address of <brain> and
@@ -16,7 +16,13 @@
  * returns actual data
  * printing *stringPTR will give use the value of what <stringPTR> is pointing at (same as the value of <brain>)
  * printing stringPTR will give use the address of what it's pointing at (same as the address of <brain>)
- */
+ *
+ *
+ *	Why use references?
+ *		-Doesn't use extra memory, it's just an alias for original variable
+ *		-No copying, if you pass a varibale by ref you have direct access to the original data. Passing by value creates a full copy
+ * 		-Cannot be null, making them safer than pointers
+ **/
 
 int	main()
 {

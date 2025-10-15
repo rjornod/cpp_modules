@@ -22,20 +22,25 @@ int main(void)
 				<< WHITE
 				<< std::endl
 				<< std::endl;
+
 	randomChump("Nick");
 	randomChump("Jaylin");
+
 	std::cout	<< std::endl
 				<< YELLOW
 				<< "╚════════════════════════════════════════╝"
 				<< WHITE;
 	std::cout << std::endl;
+
 	std::cout	<< BLUE
 				<< "╔════════ DELETING HEAP ZOMBIES ════════╗"
 				<< WHITE
 				<< std::endl
 				<< std::endl;
+
 	delete zombie1;
 	delete zombie2;
+	
 	std::cout	<<	std::endl
 				<< BLUE
 				<< "╚═══════════════════════════════════════╝"
