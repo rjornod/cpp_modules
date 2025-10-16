@@ -5,7 +5,7 @@
  *	because this is a const method, it doesn't allow the user to change variable values
  * 
  **/
-const std::string &Weapon::getType() const
+const std::string &Weapon::getType()
 {
 	return _type;
 }

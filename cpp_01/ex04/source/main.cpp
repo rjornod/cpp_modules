@@ -6,7 +6,7 @@
 #define GREEN "\033[32m"
 #define YELLOW "\033[33m"
 
-int	argCheck(int argc)//std::ifstream &infile, int argc)
+int	argCheck(int argc)
 {
 	if (argc != 4)
 	{
@@ -16,7 +16,7 @@ int	argCheck(int argc)//std::ifstream &infile, int argc)
 	return (1);
 }
 
-int fileCheck(std::ifstream &infile, std::ofstream &outfile)
+int fileCheck(std::ifstream &infile, std::ofstream &outfile, std::string &search_word)
 {
 	if ( infile.fail() || !infile.is_open())
 	{
@@ -26,6 +26,11 @@ int fileCheck(std::ifstream &infile, std::ofstream &outfile)
 	if ( outfile.fail() || !outfile.is_open())
 	{
 		std::cout << RED << "Problem opening the outfile" << WHITE << std::endl;
+		return (0);
+	}
+	if (search_word.empty())
+	{
+		std::cout << RED << "Can't search for an empty string" << WHITE << std::endl;
 		return (0);
 	}
 	return (1);
@@ -84,7 +89,7 @@ int	main(int argc, char **argv)
 	std::string search_word = argv[2];
 	std::string replacement_word = argv[3];
 	
-	if(!fileCheck(infile, outfile))
+	if(!fileCheck(infile, outfile, search_word))
 		exit(0);
 	else
 		outfile << replaceWord(infile, replacement_word, search_word);

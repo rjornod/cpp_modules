@@ -26,24 +26,3 @@ Zombie::~Zombie()
 				<< " destroyed"
 				<<std::endl;
 }
-// int main(void)
-// {
-// 	std::cout	<< "HEAP ZOMBIES"
-// 				<< std::endl
-// 				<< std::endl;
-
-// 	Zombie* zombie1 = newZombie("Russell");
-// 	zombie1->announce();
-// 	Zombie* zombie2 = newZombie("Lu");
-// 	zombie2->announce();
-
-// 	std::cout	<< std::endl
-// 				<< "STACK ZOMBIES"
-// 				<< std::endl;
-// 	randomChump("Nick");
-// 	randomChump("Jaylin");
-// 	std::cout << std::endl;
-// 	delete zombie1;
-// 	delete zombie2;
-
-// }
