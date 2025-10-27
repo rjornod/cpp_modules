@@ -3,7 +3,7 @@ NAME = fixed
 CC = c++
 FLAGS = -std=c++20
 
-SRC = main.cpp
+SRC = main.cpp Fixed.cpp
 HEADERS = include/Fixed.hpp
 SRC_PATH = source
 OBJ_PATH = obj
@@ -26,7 +26,7 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.cpp $(HEADERS) | $(OBJ_PATH)
 
 $(NAME): $(OBJ)
 	@$(CC) $(FLAGS) $(OBJ) -o $(NAME)
-	@echo "$(GREEN)"Successfully created the executable ./zombie" $(WHITE)"
+	@echo "$(GREEN)"Successfully created the executable ./fixed" $(WHITE)"
 	
 clean:
 	@rm -f $(OBJ)

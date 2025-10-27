@@ -28,14 +28,23 @@ Fixed &Fixed::operator=(const Fixed& other)
 	return *this;
 }
 
+//getRawBits gets the raw value of the fixed point number in the original object
+//copy constructor creates a new object as a copy of an existing object
+//setRawBits sets the raw value of the fixed point number into the new object
 Fixed::Fixed(const Fixed& copy)
 {
 	std::cout << "Copy constructor called" << std::endl;
-
-
+	setRawBits(copy.getRawBits());
+	
 }
 
-Fixed::getRawBits( void )
+int Fixed::getRawBits( void ) const
 {
-	
+	std::cout << "getRawBits member function called" << std::endl;
+	return _value;
+}
+
+void Fixed::setRawBits( int const raw )
+{
+	_value = raw;
 }

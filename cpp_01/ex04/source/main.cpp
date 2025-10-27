@@ -1,5 +1,7 @@
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <cstdlib>
 #define RED "\033[1;31m"
 #define WHITE "\033[0m"
 #define BLUE "\033[34m"
