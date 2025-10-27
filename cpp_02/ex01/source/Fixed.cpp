@@ -4,7 +4,7 @@
 //default destructor
 Fixed::~Fixed()
 {
-	std::cout << "Default destructor called" << std::endl;
+	std::cout << "Destructor called" << std::endl;
 }
 
 //defualt constrcutor, doesnt take a parameter
