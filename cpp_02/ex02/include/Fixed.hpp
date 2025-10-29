@@ -33,6 +33,16 @@ class Fixed {
 		Fixed operator-( const Fixed& other ) const;
 		Fixed operator/( const Fixed& other ) const;
 
+		Fixed& operator++(); //pre increment
+		Fixed& operator--(); //pre decrement
+		Fixed operator++(int); //int is the differentiator between pre increment and post decrement
+		Fixed operator--(int); //post decrement
+
+		static const Fixed& min(const Fixed& first, const Fixed& second);
+		static const Fixed& min(Fixed& first, Fixed& second);
+		static const Fixed& max(const Fixed& first, const Fixed& second);
+		static const Fixed& max(Fixed& first, Fixed& second);
+
 };
 
 /**
