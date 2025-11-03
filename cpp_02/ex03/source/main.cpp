@@ -1,28 +1,23 @@
 #include <iostream>
-#include "../include/Fixed.hpp"
+#include "../include/Point.hpp"
 
 int main( void ) 
 {
-	Fixed a;
-	// Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
-	Fixed b(2.02f);
-	std::cout << "[a] value: " << a << std::endl;
-	std::cout << "Pre increment: " << ++a << std::endl;
-	std::cout << "[a] value: " << a << std::endl;
-	std::cout << "Post increment: " << a++ << std::endl;
-	std::cout << "[a] value: " << a << std::endl;
-	std::cout << "[b] value: "<< b << std::endl;
-	// a = 1;
-	// if (a <= b)
-	// 	std::cout << "a is less or equal than b" << std::endl;
+	Point a(2,4);
+	Point b(3,0);
+	Point c(1,1);
+	Point point(1,0);
+
+	std::cout << a.getX() << std::endl;
+	// std::cout << a.getY() << std::endl;
+	std::cout << b.getX() << std::endl;
+	// std::cout << b.getY() << std::endl;
+
+	bsp(a,b,c, point);
+	// if (bsp(a,b,c,point) == true)
+	// 	std::cout << "True" << std::endl;
 	// else
-	// 		std::cout << "b is less or equal than a" << std::endl;
-	std::cout << "Subtraction: " << a - b << std::endl;
-	std::cout << "Addition: " << a + b << std::endl;
-	std::cout << "Multplication: " << a * b << std::endl;
-	std::cout << "Division: " << a / b << std::endl;
-	std::cout << "Max: " << Fixed::max( a, b ) << std::endl;
-	std::cout << "Min: " << Fixed::min( a, b ) << std::endl;
+	// 	std::cout << "False" << std::endl;
 
 	return 0;
 }

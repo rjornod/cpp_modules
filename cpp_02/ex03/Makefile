@@ -3,8 +3,8 @@ NAME = fixed
 CC = c++
 FLAGS = -std=c++20
 
-SRC = main.cpp Fixed.cpp
-HEADERS = include/Fixed.hpp
+SRC = main.cpp Fixed.cpp Point.cpp bsp.cpp
+HEADERS = include/Fixed.hpp include/Point.hpp
 SRC_PATH = source
 OBJ_PATH = obj
 OBJ = $(SRC:%.cpp=$(OBJ_PATH)/%.o)
