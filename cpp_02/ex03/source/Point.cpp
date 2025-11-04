@@ -9,12 +9,12 @@ Point::Point( const Point& copy ):_x(copy._x), _y(copy._y){}
 Point::~Point()
 {}
 
-const Fixed& Point::getY() const
+const Fixed& Point::getYVal()	 const
 {
 	return _y;
 }
 
-const Fixed& Point::getX() const
+const Fixed& Point::getXVal() const
 {
 	return _x;
 }

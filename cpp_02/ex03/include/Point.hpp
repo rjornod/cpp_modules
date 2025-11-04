@@ -11,8 +11,8 @@ class Point
 		Point ( const Point& copy );
 		Point &operator=( const Point& overload ) = delete;
 		~Point();
-		const Fixed& getX() const;
-		const Fixed& getY() const;
+		const Fixed& getXVal() const;
+		const Fixed& getYVal() const;
 };
 
 bool bsp( Point const a, Point const b, Point const c, Point const point);

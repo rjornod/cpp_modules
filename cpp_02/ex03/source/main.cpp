@@ -3,21 +3,21 @@
 
 int main( void ) 
 {
-	Point a(2,4);
-	Point b(3,0);
-	Point c(1,1);
-	Point point(1,0);
+	Point a( 0.0f, 0.0f );
+	Point b( 5.0f, 0.0f );
+	Point c( 0.0f, 5.0f );
+	Point point( 0.0f, 0.0f );
 
-	std::cout << a.getX() << std::endl;
-	// std::cout << a.getY() << std::endl;
-	std::cout << b.getX() << std::endl;
-	// std::cout << b.getY() << std::endl;
+	std::cout << a.getXVal() << std::endl;
+	// std::cout << a.getYVal() << std::endl;
+	std::cout << b.getXVal() << std::endl;
+	// std::cout << b.getYVal() << std::endl;
 
-	bsp(a,b,c, point);
-	// if (bsp(a,b,c,point) == true)
-	// 	std::cout << "True" << std::endl;
-	// else
-	// 	std::cout << "False" << std::endl;
+	//bsp(a,b,c, point);
+	if (bsp(a,b,c,point) == true)
+	 	std::cout << "True" << std::endl;
+	else
+		std::cout << "False" << std::endl;
 
 	return 0;
 }

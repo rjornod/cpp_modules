@@ -1,9 +1,19 @@
 #include "../include/Point.hpp"
 
-float sign(  Point const a, Point const b, Point const c)
+//function calculates the area of a triangle, given the coordinates of its vertices
+Fixed calcArea( const Point& first, const Point& second, const Point& third )
 {
-	return (a.getX() - c.getX()) * (b.getY() - c.getY());
+	Fixed av;
+	Fixed bv;
+	Fixed cv;
+
+	av = ( first.getXVal() * ( second.getYVal() - third.getYVal() ) );
+	bv = ( second.getXVal() * ( third.getYVal() - first.getYVal() ) );
+	cv = ( third.getXVal() * ( first.getYVal() - second.getYVal() ) );
+
+	return (av + bv + cv)/2;
 }
+
 /**
  * 
  * a, b, c : the coordinates of the vertices of the triangle
@@ -14,5 +24,28 @@ float sign(  Point const a, Point const b, Point const c)
  */
 bool bsp( Point const a, Point const b, Point const c, Point const point)
 {
-	
+	Fixed areaABC = calcArea( a, b, c );
+	Fixed areaABP = calcArea( a, b, point );
+	Fixed areaAPC = calcArea( a, point, c );
+	Fixed areaPBC = calcArea( point, b, c );
+
+	if ( areaABC == 0)
+		return false;
+	if ( areaABP == 0 || areaAPC == 0 || areaPBC == 0 )
+		return false;
+	if ( areaABC > 0 ) //if original area is > 0 then for a point to be inside all the areas also need to be above 0
+	{
+		if ( areaABP > 0 && areaAPC > 0 && areaPBC > 0)
+			return true;
+		else
+			return false;
+	}
+	if ( areaABC < 0 )
+	{
+		if ( areaABP < 0 && areaAPC < 0 && areaPBC < 0)
+			return true;
+		else
+			return false;
+	}
+	return false;
 }
