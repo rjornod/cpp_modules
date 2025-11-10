@@ -17,28 +17,26 @@ Fixed::Fixed()
 //constrcutor that takes an int as a parameter and converts it to its corresponding fixed-point value.
 Fixed::Fixed( const int value )
 {
-	//std::cout << "Int constructor called" << std::endl;
 	setRawBits(value << _fractBits); //same as (value * 256)
 }
 
 //constrcutor that takes a float as a parameter and converts it to its corresponding fixed-point value.
 Fixed::Fixed( const float value )
 {
-// std::cout << "Float constructor called" << std::endl;
-	setRawBits(static_cast<int>(roundf(value * 256)));
+	// roundf rounds up the value to the neares representable value. 
+	// if you dont use roundf it moves the value closer to 0
+	setRawBits((roundf(value * (1 << _fractBits))));
 }
 
 //copy constructor
-Fixed::Fixed( const Fixed& copy)
+Fixed::Fixed( const Fixed& other)
 {
-	//std::cout << "Copy constructor called" << std::endl;
-	setRawBits(copy.getRawBits());
+	setRawBits(other.getRawBits());
 }
 
 //copy assignment operator overload
 Fixed &Fixed::operator=(const Fixed& other)
 {
-	//std::cout << "Copy assigment operator called" << std::endl;
 	if (this != &other)
 		setRawBits(other.getRawBits());
 	return *this;
@@ -89,6 +87,12 @@ std::ostream& operator<<(std::ostream& output_stream, const Fixed& fixed)
 //this->getRawBits() referes to the value of the current object
 //other.getRawBits() refers to the value of the object being compared
 
+/**
+ * 
+ * The comparison operators compare the fixed point value of this and other and returns
+ * true or false based on the result
+ * 
+ */
 bool Fixed::operator!=(const Fixed& other) const
 {
 	return (this->_fixedPointVal != other._fixedPointVal);
@@ -129,14 +133,17 @@ bool Fixed::operator<=(const Fixed &other) const
 
 Fixed Fixed::operator+(const Fixed& other) const
 {
-	return Fixed(this->toFloat() + other.toFloat());
+	Fixed result;
+	result.setRawBits(this->getRawBits() + other.getRawBits());
+
+	return (result);
 }
 
 Fixed Fixed::operator-(const Fixed& other) const
 {
 	Fixed result;
 
-	return Fixed(this->toFloat() - other.toFloat());
+	result.setRawBits(this->getRawBits() - other.getRawBits());
 	return result;
 }
 
@@ -149,6 +156,7 @@ Fixed Fixed::operator/(const Fixed& other) const
 Fixed Fixed::operator*(const Fixed& other) const
 {
 	return (Fixed(this->toFloat() * other.toFloat()));
+
 }
 
 //pre increment overload

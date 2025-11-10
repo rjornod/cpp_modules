@@ -11,7 +11,7 @@ Fixed calcArea( const Point& first, const Point& second, const Point& third )
 	bv = ( second.getXVal() * ( third.getYVal() - first.getYVal() ) );
 	cv = ( third.getXVal() * ( first.getYVal() - second.getYVal() ) );
 
-	return (av + bv + cv)/2;
+	return (av + bv + cv) / 2;
 }
 
 /**
@@ -29,20 +29,24 @@ bool bsp( Point const a, Point const b, Point const c, Point const point)
 	Fixed areaAPC = calcArea( a, point, c );
 	Fixed areaPBC = calcArea( point, b, c );
 
+	std::cout << std::endl << "areaABC is: " << areaABC << std::endl;
+	std::cout << "areaABP is: " << areaABP <<std::endl;
+	std::cout << "areaAPC is: " << areaAPC <<std::endl;
+	std::cout << "areaPBC is: " << areaPBC <<std::endl;
 	if ( areaABC == 0)
 		return false;
 	if ( areaABP == 0 || areaAPC == 0 || areaPBC == 0 )
 		return false;
 	if ( areaABC > 0 ) //if original area is > 0 then for a point to be inside all the areas also need to be above 0
 	{
-		if ( areaABP > 0 && areaAPC > 0 && areaPBC > 0)
+		if ( areaABP > 0 && areaAPC > 0 && areaPBC > 0) //if this is valid, the point is inside the triangle
 			return true;
 		else
 			return false;
 	}
 	if ( areaABC < 0 )
 	{
-		if ( areaABP < 0 && areaAPC < 0 && areaPBC < 0)
+		if ( areaABP < 0 && areaAPC < 0 && areaPBC < 0) //if this is valid, the point is inside the triangle
 			return true;
 		else
 			return false;
