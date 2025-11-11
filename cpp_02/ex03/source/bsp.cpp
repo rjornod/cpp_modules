@@ -1,5 +1,4 @@
 #include "../include/Point.hpp"
-
 //function calculates the area of a triangle, given the coordinates of its vertices
 Fixed calcArea( const Point& first, const Point& second, const Point& third )
 {
@@ -30,9 +29,9 @@ bool bsp( Point const a, Point const b, Point const c, Point const point)
 	Fixed areaPBC = calcArea( point, b, c );
 
 	std::cout << std::endl << "areaABC is: " << areaABC << std::endl;
-	std::cout << "areaABP is: " << areaABP <<std::endl;
-	std::cout << "areaAPC is: " << areaAPC <<std::endl;
-	std::cout << "areaPBC is: " << areaPBC <<std::endl;
+	std::cout << "areaABP is: " << areaABP << std::endl;
+	std::cout << "areaAPC is: " << areaAPC << std::endl;
+	std::cout << "areaPBC is: " << areaPBC << std::endl;
 	if ( areaABC == 0)
 		return false;
 	if ( areaABP == 0 || areaAPC == 0 || areaPBC == 0 )

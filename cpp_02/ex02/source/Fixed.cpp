@@ -93,34 +93,34 @@ std::ostream& operator<<(std::ostream& output_stream, const Fixed& fixed)
  * true or false based on the result
  * 
  */
-bool Fixed::operator!=(const Fixed& other) const
+bool Fixed::operator!=( const Fixed& other ) const
 {
-	return (this->_fixedPointVal != other._fixedPointVal);
+	return ( this->_fixedPointVal != other._fixedPointVal );
 }
 
-bool Fixed::operator==(const Fixed& other) const
+bool Fixed::operator==( const Fixed& other ) const
 {
-	return (this->_fixedPointVal == other._fixedPointVal);
+	return ( this->_fixedPointVal == other._fixedPointVal );
 }
 
-bool Fixed::operator>(const Fixed& other) const
+bool Fixed::operator>( const Fixed& other ) const
 {
-	return (this->_fixedPointVal > other._fixedPointVal);
+	return ( this->_fixedPointVal > other._fixedPointVal );
 }
 
-bool Fixed::operator<(const Fixed &other) const
+bool Fixed::operator<( const Fixed &other ) const
 {
-	return (this->_fixedPointVal < other._fixedPointVal);
+	return ( this->_fixedPointVal < other._fixedPointVal );
 }
 
-bool Fixed::operator>=(const Fixed& other) const
+bool Fixed::operator>=( const Fixed& other ) const
 {
-	return (this->_fixedPointVal >= other._fixedPointVal);
+	return ( this->_fixedPointVal >= other._fixedPointVal );
 }
 
-bool Fixed::operator<=(const Fixed &other) const
+bool Fixed::operator<=( const Fixed &other ) const
 {
-	return (this->_fixedPointVal <= other._fixedPointVal);
+	return ( this->_fixedPointVal <= other._fixedPointVal );
 }
 
 
@@ -131,31 +131,32 @@ bool Fixed::operator<=(const Fixed &other) const
  * 
  */
 
-Fixed Fixed::operator+(const Fixed& other) const
+Fixed Fixed::operator+( const Fixed& other ) const
 {
 	Fixed result;
-	result.setRawBits(this->getRawBits() + other.getRawBits());
 
-	return (result);
+	result.setRawBits( this->getRawBits() + other.getRawBits() );
+
+	return ( result );
 }
 
-Fixed Fixed::operator-(const Fixed& other) const
+Fixed Fixed::operator-( const Fixed& other ) const
 {
 	Fixed result;
 
-	result.setRawBits(this->getRawBits() - other.getRawBits());
+	result.setRawBits( this->getRawBits() - other.getRawBits());
 	return result;
 }
 
-Fixed Fixed::operator/(const Fixed& other) const
+Fixed Fixed::operator/( const Fixed& other) const
 {
-	return (Fixed(this->toFloat() / other.toFloat()));
+	return ( Fixed(this->toFloat() / other.toFloat()) );
 }
 
 
-Fixed Fixed::operator*(const Fixed& other) const
+Fixed Fixed::operator*( const Fixed& other ) const
 {
-	return (Fixed(this->toFloat() * other.toFloat()));
+	return ( Fixed(this->toFloat() * other.toFloat()) );
 
 }
 
@@ -173,7 +174,7 @@ Fixed &Fixed::operator--()
 	return *this;
 }
 
-Fixed Fixed::operator++(int)
+Fixed Fixed::operator++( int )
 {
 	Fixed copy = *this;
 	++_fixedPointVal;
@@ -181,7 +182,7 @@ Fixed Fixed::operator++(int)
 	return copy;
 }
 
-Fixed Fixed::operator--(int)
+Fixed Fixed::operator--( int )
 {
 	Fixed copy = *this;
 	--_fixedPointVal;
@@ -189,7 +190,7 @@ Fixed Fixed::operator--(int)
 	return copy;
 }
 
-const Fixed& Fixed::min(const Fixed& first, const Fixed& second)
+const Fixed& Fixed::min( const Fixed& first, const Fixed& second )
 {
 	if ( first._fixedPointVal < second._fixedPointVal )
 		return first;
