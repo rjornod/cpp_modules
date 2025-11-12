@@ -7,7 +7,7 @@ Fixed::~Fixed()
 	std::cout << "Destructor called" << std::endl;
 }
 
-//defualt constrcutor, doesnt take a parameter
+//defualt constrcutor, doesnt take a parameter, initializes rawBits to 0
 Fixed::Fixed()
 {
     std::cout << "Default constructor called" << std::endl;
@@ -24,7 +24,7 @@ Fixed::Fixed( const int value )
 //constrcutor that takes a float as a parameter and converts it to its corresponding fixed-point value.
 Fixed::Fixed( const float value )
 {
- std::cout << "Float constructor called" << std::endl;
+	std::cout << "Float constructor called" << std::endl;
 	setRawBits(static_cast<int>(roundf(value * 256)));
 }
 
@@ -48,7 +48,7 @@ Fixed &Fixed::operator=(const Fixed& other)
  * @brief function converts a fixed point value to a float
  * 
  * the conversion is done by casting _fixedPointVal to a float and then dividing it
- * by 256.0f, a float value to avoid integer division. this preservs the factional part
+ * by 256.0f, a float value to avoid integer division. this preserves the fractional part
  *
  * @return float 
  */
@@ -79,6 +79,7 @@ void Fixed::setRawBits( int const raw )
 	_fixedPointVal = raw;
 }
 
+//overload of the insertion operator
 std::ostream& operator<<(std::ostream& output_stream, const Fixed& fixed)
 {
 	output_stream << fixed.toFloat(); //converts fixed to a readable float

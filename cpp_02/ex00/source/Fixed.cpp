@@ -18,7 +18,7 @@ Fixed &Fixed::operator=(const Fixed& other)
 	std::cout << "Copy assignment operator called" << std::endl;
 
 	// self assignment check, if this equals copy both will point to the same memory address
-	//could cause problems if memory was allocated
+	// would cause problems if memory was allocated
 	
 	if (this != &other)
 		setRawBits(other.getRawBits());

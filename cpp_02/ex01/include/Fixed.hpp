@@ -1,3 +1,6 @@
+#ifndef FIXED_HPP
+#define FIXED_HPP
+
 #include <iostream>
 
 /**
@@ -44,3 +47,5 @@ class Fixed {
  * @return std::ostream& - returns the same stream to allow chaining
  */
 std::ostream& operator<<(std::ostream& output_stream, const Fixed& fixed);
+
+#endif

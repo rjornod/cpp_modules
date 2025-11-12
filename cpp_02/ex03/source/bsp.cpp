@@ -28,10 +28,10 @@ bool bsp( Point const a, Point const b, Point const c, Point const point)
 	Fixed areaAPC = calcArea( a, point, c );
 	Fixed areaPBC = calcArea( point, b, c );
 
-	std::cout << std::endl << "areaABC is: " << areaABC << std::endl;
-	std::cout << "areaABP is: " << areaABP << std::endl;
-	std::cout << "areaAPC is: " << areaAPC << std::endl;
-	std::cout << "areaPBC is: " << areaPBC << std::endl;
+	// std::cout << std::endl << "areaABC is: " << areaABC << std::endl;
+	// std::cout << "areaABP is: " << areaABP << std::endl;
+	// std::cout << "areaAPC is: " << areaAPC << std::endl;
+	// std::cout << "areaPBC is: " << areaPBC << std::endl;
 	if ( areaABC == 0)
 		return false;
 	if ( areaABP == 0 || areaAPC == 0 || areaPBC == 0 )

@@ -1,5 +1,7 @@
-#include <iostream>
+#ifndef FIXED_HPP
+#define FIXED_HPP
 
+#include <iostream>
 
 class Fixed {
 	private:
@@ -14,10 +16,10 @@ class Fixed {
 		Fixed &operator=( const Fixed& overload );
 		~Fixed( void );
 
-		int getRawBits( void ) const;
-		void setRawBits( int const raw );
-        float toFloat( void ) const;
-        int toInt( void ) const;
+		int 	getRawBits( void ) const;
+		void 	setRawBits( int const raw );
+        float 	toFloat( void ) const;
+        int 	toInt( void ) const;
 
 		//these member functions will compare *this with other and return true or false
 		bool operator==( const Fixed& other ) const;
@@ -39,9 +41,9 @@ class Fixed {
 		Fixed operator--(int); //post decrement
 
 		static const Fixed& min(const Fixed& first, const Fixed& second);
-		static const Fixed& min(Fixed& first, Fixed& second);
 		static const Fixed& max(const Fixed& first, const Fixed& second);
-		static const Fixed& max(Fixed& first, Fixed& second);
+		static Fixed& min(Fixed& first, Fixed& second);
+		static Fixed& max(Fixed& first, Fixed& second);
 
 };
 
@@ -55,3 +57,5 @@ class Fixed {
  * @return std::ostream& - returns the same stream to allow chaining
  */
 std::ostream& operator<<(std::ostream& output_stream, const Fixed& fixed);
+
+#endif

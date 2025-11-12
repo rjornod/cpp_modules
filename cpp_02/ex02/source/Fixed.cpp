@@ -198,7 +198,7 @@ const Fixed& Fixed::min( const Fixed& first, const Fixed& second )
 		return second;
 }
 
-const Fixed& Fixed::min( Fixed& first, Fixed& second)
+Fixed& Fixed::min( Fixed& first, Fixed& second)
 {
 	if ( first._fixedPointVal < second._fixedPointVal )
 		return first;
@@ -214,7 +214,7 @@ const Fixed& Fixed::max(const Fixed& first, const Fixed& second)
 		return second;
 }
 
-const Fixed& Fixed::max( Fixed& first, Fixed& second)
+Fixed& Fixed::max( Fixed& first, Fixed& second)
 {
 	if ( first._fixedPointVal > second._fixedPointVal )
 		return first;
