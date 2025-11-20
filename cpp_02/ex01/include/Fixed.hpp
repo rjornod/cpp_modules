@@ -26,10 +26,10 @@ class Fixed {
 
 		Fixed(); //default constructor. initializes _value to 0
         Fixed(const int value); //parameterized constructor, initializes _value to an int
-        Fixed(const float value);//initializes _value to a float
+        Fixed(const float value); //initializes _value to a float
 		Fixed(const Fixed& copy); //copy constructor
-		Fixed &operator=(const Fixed& overload);
-		~Fixed(void);
+		Fixed &operator=(const Fixed& overload); //copy assignmet operator
+		~Fixed(void); //destructor
 
 		int getRawBits( void ) const;
 		void setRawBits( int const raw );

@@ -25,7 +25,7 @@ Fixed::Fixed( const int value )
 Fixed::Fixed( const float value )
 {
 	std::cout << "Float constructor called" << std::endl;
-	setRawBits(static_cast<int>(roundf(value * 256)));
+	setRawBits(static_cast<int>(roundf(value * 256))); //rounds to the nearest integer, so the stored fixed raw value represents the nearest representable fixed‑point value
 }
 
 //copy constructor

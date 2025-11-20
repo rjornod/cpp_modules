@@ -9,10 +9,10 @@ class Fixed {
 		static const int _fractBits = 8; //scaling factor, 2^8 = 256
 	public:
 
-		Fixed(); //default constructor. initializes _value to 0
-        Fixed( const int value ); //parameterized constructor, initializes _value to an int
-        Fixed( const float value );//initializes _value to a float
-		Fixed( const Fixed& copy ); //copy constructor
+		Fixed();
+        Fixed( const int value );
+        Fixed( const float value ),
+		Fixed( const Fixed& copy );
 		Fixed &operator=( const Fixed& overload );
 		~Fixed( void );
 
@@ -35,11 +35,13 @@ class Fixed {
 		Fixed operator-( const Fixed& other ) const;
 		Fixed operator/( const Fixed& other ) const;
 
+		//Increments/decrements the fixed point number by the smallest representable ϵ
 		Fixed& operator++(); //pre increment
 		Fixed& operator--(); //pre decrement
 		Fixed operator++(int); //int is the differentiator between pre increment and post decrement
 		Fixed operator--(int); //post decrement
 
+		//Functions that will compare two numbers and return the max or min
 		static const Fixed& min(const Fixed& first, const Fixed& second);
 		static const Fixed& max(const Fixed& first, const Fixed& second);
 		static Fixed& min(Fixed& first, Fixed& second);

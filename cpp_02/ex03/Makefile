@@ -1,4 +1,4 @@
-NAME = fixed
+NAME = bsp
 
 CC = c++
 FLAGS = -std=c++20
@@ -26,7 +26,7 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.cpp $(HEADERS) | $(OBJ_PATH)
 
 $(NAME): $(OBJ)
 	@$(CC) $(FLAGS) $(OBJ) -o $(NAME)
-	@echo "$(GREEN)"Successfully created the executable ./fixed" $(WHITE)"
+	@echo "$(GREEN)"Successfully created the executable ./bsp" $(WHITE)"
 	
 clean:
 	@rm -f $(OBJ)

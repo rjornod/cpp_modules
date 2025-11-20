@@ -1,40 +1,30 @@
 #include "../include/Fixed.hpp"
 #include <cmath>
 
-//default destructor
 Fixed::~Fixed()
 {
-	//std::cout << "Destructor called" << std::endl;
 }
 
-//defualt constrcutor, doesnt take a parameter
 Fixed::Fixed()
 {
-    //std::cout << "Default constructor called" << std::endl;
     setRawBits(0);
 }
 
-//constrcutor that takes an int as a parameter and converts it to its corresponding fixed-point value.
 Fixed::Fixed( const int value )
 {
 	setRawBits(value << _fractBits); //same as (value * 256)
 }
 
-//constrcutor that takes a float as a parameter and converts it to its corresponding fixed-point value.
 Fixed::Fixed( const float value )
 {
-	// roundf rounds up the value to the neares representable value. 
-	// if you dont use roundf it moves the value closer to 0
 	setRawBits((roundf(value * (1 << _fractBits))));
 }
 
-//copy constructor
 Fixed::Fixed( const Fixed& other)
 {
 	setRawBits(other.getRawBits());
 }
 
-//copy assignment operator overload
 Fixed &Fixed::operator=(const Fixed& other)
 {
 	if (this != &other)
@@ -42,25 +32,11 @@ Fixed &Fixed::operator=(const Fixed& other)
 	return *this;
 }
 
-/**
- * @brief function converts a fixed point value to a float
- * 
- * the conversion is done by casting _fixedPointVal to a float and then dividing it
- * by 256.0f, a float value to avoid integer division. this preservs the factional part
- *
- * @return float 
- */
 float Fixed::toFloat( void ) const
 {
 	return static_cast<float>(_fixedPointVal) / 256.0f;
 }
 
-/**
- * @brief function that converts the fixed-point value to an integer value.
- * 
- * Conversion is done by taking the fixed point value and dividing it by 256 (the scaling factor)
- * @return int 
- */
 int Fixed::toInt( void ) const
 {
 	return getRawBits() / 256;
@@ -81,11 +57,6 @@ std::ostream& operator<<(std::ostream& output_stream, const Fixed& fixed)
 	output_stream << fixed.toFloat(); //converts fixed to a readable float
 	return output_stream; //return stream for chaining
 }
-
-
-
-//this->getRawBits() referes to the value of the current object
-//other.getRawBits() refers to the value of the object being compared
 
 /**
  * 
@@ -174,6 +145,7 @@ Fixed &Fixed::operator--()
 	return *this;
 }
 
+//post increment overload
 Fixed Fixed::operator++( int )
 {
 	Fixed copy = *this;
@@ -182,6 +154,7 @@ Fixed Fixed::operator++( int )
 	return copy;
 }
 
+//post decrement overload
 Fixed Fixed::operator--( int )
 {
 	Fixed copy = *this;
