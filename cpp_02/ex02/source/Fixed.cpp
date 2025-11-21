@@ -121,14 +121,30 @@ Fixed Fixed::operator-( const Fixed& other ) const
 
 Fixed Fixed::operator/( const Fixed& other) const
 {
-	return ( Fixed(this->toFloat() / other.toFloat()) );
+	Fixed result;
+    long first_val = static_cast<long long>(this->getRawBits()) << _fractBits;
+    long second_val = static_cast<long long>(other.getRawBits());
+
+    if (second_val == 0)
+    {
+        result.setRawBits(0);
+        return result;
+    }
+    result.setRawBits(static_cast<int>(first_val / second_val));
+    return result;
 }
 
 
 Fixed Fixed::operator*( const Fixed& other ) const
 {
-	return ( Fixed(this->toFloat() * other.toFloat()) );
+	Fixed	result;
+    long 	temp;
 
+	temp = static_cast<long>(this->getRawBits()) * static_cast<long>(other.getRawBits());
+    temp = temp >> _fractBits;
+
+    result.setRawBits(static_cast<int>(temp));
+    return result;
 }
 
 //pre increment overload
