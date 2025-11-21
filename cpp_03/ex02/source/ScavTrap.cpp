@@ -38,7 +38,10 @@ ScavTrap::~ScavTrap()
 
 void ScavTrap::guardGate()
 {
-	std::cout << "ScavTrap is now in gatekeeper mode!" << std::endl;
+	if (_hitPoints <= 0)
+		std::cout << "ScavTrap has no hitpoints so it can't guard the gate!" << std::endl;
+	else
+		std::cout << "ScavTrap is now in gatekeeper mode!" << std::endl;
 }
 
 void ScavTrap::attack(const std::string& target)

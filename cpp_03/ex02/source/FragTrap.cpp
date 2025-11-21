@@ -38,5 +38,8 @@ FragTrap::~FragTrap()
 
 void FragTrap::highFivesGuys(void)
 {
-	std::cout << "FragTrap is asking you for a high five!" << std::endl;
+	if (_hitPoints <= 0)
+		std::cout << "FragTrap has no hitpoints so it can't request a high five!" << std::endl;
+	else
+		std::cout << "FragTrap is asking you for a high five!" << std::endl;
 }

@@ -44,6 +44,7 @@ int main( void )
 	else
 		std::cout << "False" << std::endl;
 
+
 	std::cout << std::endl << std::endl <<"Point on an edge or vertex" << std::endl;
 
 	std::cout << "( " << pointi.getXVal() << ", " << pointi.getYVal() << " ): "; 
@@ -65,23 +66,21 @@ int main( void )
 		std::cout << "False" << std::endl;
 	
 
-
-
 	std::cout << std::endl << std::endl <<"Points on the outside of the triangle" << std::endl;
 	
-	std::cout << "( " << pointo.getXVal() << ", " << pointo.getYVal() << " ): "; 
+	std::cout << "( " << pointo.getXVal() << ", " << pointo.getYVal() << " ): ";
 	if (bsp(a,b,c,pointo) == true)
 	 	std::cout << "True" << std::endl;
 	else
 		std::cout << "False" << std::endl;
 	
-	std::cout << "( " << pointp.getXVal() << ", " << pointp.getYVal() << " ): "; 
+	std::cout << "( " << pointp.getXVal() << ", " << pointp.getYVal() << " ): ";
 	if (bsp(a,b,c,pointp) == true)
 	 	std::cout << "True" << std::endl;
 	else
 		std::cout << "False" << std::endl;
 	
-	std::cout << "( " << pointv.getXVal() << ", " << pointv.getYVal() << " ): "; 
+	std::cout << "( " << pointv.getXVal() << ", " << pointv.getYVal() << " ): ";
 	if (bsp(a,b,c,pointv) == true)
 	 	std::cout << "True" << std::endl;
 	else
