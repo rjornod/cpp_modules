@@ -27,7 +27,7 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.cpp $(HEADERS) | $(OBJ_PATH)
 
 $(NAME): $(OBJ)
 	@$(CC) $(FLAGS) $(OBJ) -o $(NAME)
-	@echo "$(GREEN)"Successfully created the executable ./diamond" $(WHITE)"
+	@echo "$(GREEN)"Successfully created the executable ./diamondtrap" $(WHITE)"
 	
 clean:
 	@rm -f $(OBJ)
