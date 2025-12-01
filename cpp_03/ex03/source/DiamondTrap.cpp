@@ -1,17 +1,18 @@
 #include "../include/ClapTrap.hpp"
 #include "../include/DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap() : ClapTrap("Default Diamond")
+DiamondTrap::DiamondTrap() : ClapTrap("default_clap_name")
 {
 	_name = "Default DiamondTrap";
 	_hitPoints = FragTrap::_hitPoints;
 	_energyPoints = ScavTrap::_energyPoints;
 	_attackDamage = FragTrap::_attackDamage;
-	std::cout << "DiamondTrap default constructor called" << std::endl;
+	std::cout << "DiamondTrap default constructor called for " << _name << std::endl;
 }
-DiamondTrap::~DiamondTrap() {}
-// DiamondTrap::DiamondTrap(const DiamondTrap& copy) {}
-// DiamondTrap& DiamondTrap::operator=(const DiamondTrap& other) {}
+DiamondTrap::~DiamondTrap() 
+{
+	std::cout << "DiamondTrap Desctructor called for " << _name << std::endl;
+}
 DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name")
 {
 	_name = name;
@@ -19,15 +20,44 @@ DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name")
 	_energyPoints = ScavTrap::_energyPoints;
 	_attackDamage = FragTrap::_attackDamage;
 
-	std::cout << "Parameterized DiamondTrap constructor called" << std::endl;
-}
-void DiamondTrap::whoAmI() 
-{
-	std::cout << "Name: " << _name << std::endl;
-	std::cout << "ClapTrap name: " << ClapTrap::_name << std::endl;
+	std::cout << "Parameterized DiamondTrap constructor called for " << _name << std::endl;
 }
 
+void DiamondTrap::whoAmI() 
+{
+	std::cout << GREEN << "Name: " << WHITE << _name << std::endl;
+	std::cout << GREEN << "ClapTrap name: " << WHITE << ClapTrap::_name << std::endl;
+}
+
+DiamondTrap& DiamondTrap::operator=(const DiamondTrap& other)
+{
+	std::cout << "DiamondTrap assignment operator called" << std::endl;
+	if (this != &other)
+	{
+		ClapTrap::operator=(other);
+		FragTrap::operator=(other);
+		ScavTrap::operator=(other);
+		_name = other._name;
+	}
+	return *this;
+}
+DiamondTrap::DiamondTrap(const DiamondTrap& copy) : ClapTrap(copy), _name(copy._name)
+{
+	std::cout << "DiamondTrap copy constructor called" << std::endl;
+	_hitPoints = copy._hitPoints;
+	_energyPoints = copy._energyPoints;
+	_attackDamage = copy._attackDamage;
+}
 void DiamondTrap::attack(const std::string& target)
 {
 	ScavTrap::attack(target);
+}
+
+void DiamondTrap::showStats()
+{
+	std::cout << std::endl << RED <<"Stats for " << _name << WHITE << std::endl;
+	std::cout << "Hit Points: " << _hitPoints << std::endl;
+	std::cout << "Energy points: " << _energyPoints << std::endl;
+	std::cout << "Attack damage: " << _attackDamage << std::endl;
+	
 }

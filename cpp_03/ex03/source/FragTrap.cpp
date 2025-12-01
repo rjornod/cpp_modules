@@ -2,7 +2,7 @@
 
 FragTrap::FragTrap() : ClapTrap("Default Scav")
 {
-	std::cout << "Default FragTrap constructor called" << std::endl;
+	std::cout << "Default FragTrap constructor called for " << _name << std::endl;
 	_hitPoints = 100;
 	_energyPoints = 100;
 	_attackDamage = 30;
@@ -10,7 +10,7 @@ FragTrap::FragTrap() : ClapTrap("Default Scav")
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
-	std::cout << "Parameterized FragTrap constructor called" << std::endl;
+	std::cout << "Parameterized FragTrap constructor called for " << _name << std::endl;
 	_hitPoints = 100;
 	_energyPoints = 100;
 	_attackDamage = 30;
@@ -33,7 +33,7 @@ FragTrap::FragTrap(const FragTrap& copy) : ClapTrap(copy)
 
 FragTrap::~FragTrap()
 {
-	std::cout << "FragTrap destructor called" << std::endl;
+	std::cout << "FragTrap Desctructor called for " << _name << std::endl;
 }
 
 void FragTrap::highFivesGuys(void)
@@ -41,5 +41,5 @@ void FragTrap::highFivesGuys(void)
 	if (_hitPoints <= 0)
 		std::cout << "FragTrap has no hitpoints so it can't request a high five!" << std::endl;
 	else
-		std::cout << "FragTrap is asking you for a high five!" << std::endl;
+		std::cout << "FragTrap " << _name << " is asking you for a high five!" << std::endl;
 }
