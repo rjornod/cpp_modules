@@ -10,7 +10,7 @@
 class ClapTrap{
 	protected: 
 		std::string		_name;
-		int	_hitPoints;
+		int				_hitPoints;
 		unsigned int 	_energyPoints;
 		unsigned int 	_attackDamage;
 

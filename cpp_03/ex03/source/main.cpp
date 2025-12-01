@@ -6,40 +6,33 @@
 
 int main(void)
 {
+	std::cout << std::endl << RED << "CONSTRUCTORS" << WHITE << std::endl;
 	DiamondTrap diamond("Diamond");
 
-	std::cout << "\n Who am I?" << std::endl;
+	std::cout << std::endl << RED << "WHO AM I?" << WHITE << std::endl;
 	diamond.whoAmI();
 
 	diamond.showStats();
-	std::cout << std::endl <<  "Inherited functions" << std::endl;
+	std::cout << std::endl << RED <<  "INHERITED FUNCTIONS" << WHITE << std::endl;
 	diamond.attack("bandit"); // ScavTrap's attack with FragTrap's damage
 	diamond.takeDamage(25);  // inherited from ClapTrap
 	diamond.beRepaired(10);  // inherited from ClapTrap
 
 	
-	std::cout << std::endl << "Inherited abilities " << std::endl;
+	std::cout << std::endl << RED << "INHERITED ABILITIES " << WHITE << std::endl;
 	diamond.guardGate(); // inherited from ScavTrap
 	diamond.highFivesGuys(); // inherited from FragTrap
 
-	std::cout << std::endl << "Copy constructor" << std::endl;
+	std::cout << RED << std::endl << "COPY CONSTRUCTOR" << WHITE << std::endl;
 	DiamondTrap copy(diamond);
 	copy.whoAmI();
 
-	std::cout << "\n--- Assignment Operator Test ---" << std::endl;
-	DiamondTrap assignment("Assigned");
+	std::cout << RED << std::endl  << "ASSIGNMENT OPERATOR" << WHITE << std::endl;
+	DiamondTrap assignment("Assignation");
 	assignment = diamond;
 	assignment.whoAmI();
+	assignment.showStats();
 
-	std::cout << "\n--- Edge Case: Multiple Inheritance Test ---" << std::endl;
-	DiamondTrap multi("Multi");
-
-	// Test that we only have one ClapTrap instance
-	multi.attack("TestTarget");
-	multi.guardGate();
-	multi.highFivesGuys();
-	multi.whoAmI();
-
-	std::cout << "\n--- Destruction Chaining Test ---" << std::endl;
+	std::cout << std::endl << RED << "DESTRUCTORS" << WHITE << std::endl;
 	return 0;
 }

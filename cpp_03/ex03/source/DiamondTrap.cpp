@@ -4,9 +4,9 @@
 DiamondTrap::DiamondTrap() : ClapTrap("default_clap_name")
 {
 	_name = "Default DiamondTrap";
-	_hitPoints = FragTrap::_hitPoints;
-	_energyPoints = ScavTrap::_energyPoints;
-	_attackDamage = FragTrap::_attackDamage;
+	_hitPoints = 100;
+	_energyPoints = 50;
+	_attackDamage = 30;
 	std::cout << "DiamondTrap default constructor called for " << _name << std::endl;
 }
 DiamondTrap::~DiamondTrap() 
@@ -16,9 +16,9 @@ DiamondTrap::~DiamondTrap()
 DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name")
 {
 	_name = name;
-	_hitPoints = FragTrap::_hitPoints;
-	_energyPoints = ScavTrap::_energyPoints;
-	_attackDamage = FragTrap::_attackDamage;
+	_hitPoints = 100;
+	_energyPoints = 50;
+	_attackDamage = 30;
 
 	std::cout << "Parameterized DiamondTrap constructor called for " << _name << std::endl;
 }
@@ -31,7 +31,7 @@ void DiamondTrap::whoAmI()
 
 DiamondTrap& DiamondTrap::operator=(const DiamondTrap& other)
 {
-	std::cout << "DiamondTrap assignment operator called" << std::endl;
+	std::cout << "DiamondTrap assignment operator called for " << _name << std::endl;
 	if (this != &other)
 	{
 		ClapTrap::operator=(other);
@@ -55,7 +55,7 @@ void DiamondTrap::attack(const std::string& target)
 
 void DiamondTrap::showStats()
 {
-	std::cout << std::endl << RED <<"Stats for " << _name << WHITE << std::endl;
+	std::cout << std::endl << BLUE <<"Stats for " << _name << WHITE << std::endl;
 	std::cout << "Hit Points: " << _hitPoints << std::endl;
 	std::cout << "Energy points: " << _energyPoints << std::endl;
 	std::cout << "Attack damage: " << _attackDamage << std::endl;
