@@ -6,12 +6,12 @@
 class ScavTrap : public ClapTrap
 {
 	public:
-		using ClapTrap::ClapTrap;
 		ScavTrap();
 		ScavTrap(std::string name);
 		~ScavTrap();
 		ScavTrap( const ScavTrap& copy);
 		ScavTrap &operator=(const ScavTrap& overload);
+
 		void guardGate();
 		void attack(const std::string& target) override;
 };

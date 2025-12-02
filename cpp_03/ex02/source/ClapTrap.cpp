@@ -33,8 +33,6 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& other)
 	return *this;
 }
 
-
-
 void ClapTrap::beRepaired( unsigned int amount )
 {
 	if ( _energyPoints == 0)
@@ -81,9 +79,9 @@ void ClapTrap::attack( const std::string& target)
 
 void ClapTrap::showStats()
 {
-	std::cout << std::endl <<"Stats for " << _name << std::endl;
+	std::cout << std::endl << BLUE <<"Stats for " << _name << WHITE << std::endl;
 	std::cout << "Hit Points: " << _hitPoints << std::endl;
 	std::cout << "Energy points: " << _energyPoints << std::endl;
 	std::cout << "Attack damage: " << _attackDamage << std::endl;
-	
+	std::cout << std::endl;
 }

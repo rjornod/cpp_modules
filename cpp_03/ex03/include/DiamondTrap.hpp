@@ -19,5 +19,4 @@ class DiamondTrap :  public ScavTrap, public FragTrap {
 		void showStats();
 };
 
-
 #endif

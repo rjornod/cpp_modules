@@ -1,8 +1,4 @@
-#include "../include/ScavTrap.hpp"
-#include "../include/FragTrap.hpp"
 #include "../include/DiamondTrap.hpp"
-
-// #include "DiamondTrap.hpp"
 
 int main(void)
 {
@@ -14,25 +10,26 @@ int main(void)
 
 	diamond.showStats();
 	std::cout << std::endl << RED <<  "INHERITED FUNCTIONS" << WHITE << std::endl;
-	diamond.attack("bandit"); // ScavTrap's attack with FragTrap's damage
-	diamond.takeDamage(25);  // inherited from ClapTrap
-	diamond.beRepaired(10);  // inherited from ClapTrap
+	diamond.attack("a bandit");		// ScavTrap's attack with FragTrap's damage
+	diamond.takeDamage(25);  		// inherited from ClapTrap
+	diamond.beRepaired(10); 		// inherited from ClapTrap
 
 	
 	std::cout << std::endl << RED << "INHERITED ABILITIES " << WHITE << std::endl;
-	diamond.guardGate(); // inherited from ScavTrap
-	diamond.highFivesGuys(); // inherited from FragTrap
+	diamond.guardGate(); 		// inherited from ScavTrap
+	diamond.highFivesGuys(); 	// inherited from FragTrap
 
-	std::cout << RED << std::endl << "COPY CONSTRUCTOR" << WHITE << std::endl;
+	std::cout << RED << std::endl << "COPY CONSTRUCTOR" << WHITE << std::endl << std::endl;
 	DiamondTrap copy(diamond);
 	copy.whoAmI();
+	copy.showStats();
 
 	std::cout << RED << std::endl  << "ASSIGNMENT OPERATOR" << WHITE << std::endl;
 	DiamondTrap assignment("Assignation");
 	assignment = diamond;
 	assignment.whoAmI();
+	diamond.showStats();
 	assignment.showStats();
 
 	std::cout << std::endl << RED << "DESTRUCTORS" << WHITE << std::endl;
-	return 0;
 }

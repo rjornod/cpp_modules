@@ -17,13 +17,13 @@ class ClapTrap{
 	public:
 		ClapTrap();
 		ClapTrap( std::string name);
-		~ClapTrap();
+		virtual ~ClapTrap();
 		ClapTrap( const ClapTrap& copy );
 		ClapTrap &operator=(const ClapTrap& overload);
 
 		virtual void attack( const std::string& target );
-		void takeDamage( unsigned int amount );
-		void beRepaired( unsigned int amount );
+		void takeDamage(unsigned int amount);
+		void beRepaired(unsigned int amount);
 };
 
 #endif

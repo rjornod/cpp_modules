@@ -17,7 +17,6 @@ GREEN = \e[32m
 YELLOW = \e[33m
 
 all: $(NAME)
-	
 
 $(OBJ_PATH): 
 	@mkdir -p $(OBJ_PATH)
@@ -28,7 +27,7 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.cpp $(HEADERS) | $(OBJ_PATH)
 $(NAME): $(OBJ)
 	@$(CC) $(FLAGS) $(OBJ) -o $(NAME)
 	@echo "$(GREEN)"Successfully created the executable ./claptrap" $(WHITE)"
-	
+
 clean:
 	@rm -f $(OBJ)
 	@rm -rf $(OBJ_PATH)

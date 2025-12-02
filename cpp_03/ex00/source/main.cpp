@@ -2,9 +2,14 @@
 
 int main ()
 {
+	std::cout << std::endl << RED << "CONSTRUCTORS" << WHITE << std::endl;
 	ClapTrap first("test");
-	std::cout << first.getName() << std::endl;
+	ClapTrap second;
+
+	first.showStats();
 	first.takeDamage(9);
 	first.beRepaired(8);
-	first.attack("porto");
+	first.attack("a bandit");
+	
+	std::cout << std::endl << RED << "DESTRUCTORS" << WHITE << std::endl;
 }
