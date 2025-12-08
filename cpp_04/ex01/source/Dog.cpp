@@ -19,8 +19,9 @@ Dog& Dog::operator=(const Dog& other)
 	return *this;
 }
 
-Dog::Dog(const Dog& copy) : Animal(copy), _brain(new Brain(*copy._brain))
+Dog::Dog(const Dog& copy) : Animal(copy)
 {
+	_brain = new Brain(*copy._brain);
 	std::cout << "Dog Copy Constructor called" << std::endl;
 }
 
@@ -33,4 +34,14 @@ Dog::~Dog()
 void Dog::makeSound() const
 {
 	std::cout << "Woooof" << std::endl;
+}
+
+void Dog::setIdea(std::string idea)
+{
+	this->_brain->setIdea(idea);
+}
+
+void Dog::printIdeas(unsigned int amount)
+{
+	this->_brain->printIdea(amount);
 }

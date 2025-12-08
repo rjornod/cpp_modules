@@ -3,6 +3,7 @@
 #include "../include/Cat.hpp"
 #include "../include/WrongAnimal.hpp"
 #include "../include/WrongCat.hpp"
+#include "../include/Brain.hpp"
 #define RED "\033[1;31m"
 #define WHITE "\033[0m"
 #define BLUE "\033[34m"
@@ -25,12 +26,37 @@ int main()
 	{
 		animals[i] = new Cat();
 	}
-	const Animal* dog1 = new Dog();
-	const Animal* cat1 = new Cat();
-	//const Animal* dog2(dog1);
-	//const Animal* cat2 = new Cat();
+	Animal* dog1 = new Dog();
+	Animal* cat1 = new Cat();
+	Cat original_cat;
 
-	//cat2 = cat1;
+ 	// Setting some ideas for the original cat
+	original_cat.setIdea("First Idea");
+	original_cat.setIdea("Second Idea");
+	original_cat.setIdea("Third Idea");
+
+	// Creating a new cat and setting copying the contents of original cat into it
+	Cat copy_cat = original_cat;
+	
+	// Pritins the ideas of both cats, output should be the same
+	std::cout << std::endl<< RED << "--- ORIGINAL_CAT IDEAS ---" << WHITE << std::endl;
+	original_cat.printIdeas(4);
+	std::cout << RED << "--- COPY_CAT IDEAS ---" << WHITE << std::endl;
+	copy_cat.printIdeas(4);
+
+	// Setting a new idea for original_cat
+	original_cat.setIdea("I am original cat idea");
+	std::cout << std::endl;
+
+	// Setting a new idea for copy_cat
+	copy_cat.setIdea("I am copy cat idea");
+
+	// Printing the ideas for both cats, first 3 idas are the same and the 4th is different for each
+	std::cout << RED << "--- ORIGINAL_CAT IDEAS AFTER ADDING ---" << WHITE << std::endl;
+	original_cat.printIdeas(4);
+	std::cout << RED << "--- COPY_CAT IDEAS AFTER ADDING ---" << WHITE << std::endl;
+	copy_cat.printIdeas(4);
+
 	std::cout << RED << "DESTRUCTORS" << WHITE << std::endl;
 	for (i = 0; i < size; i++)
 	{

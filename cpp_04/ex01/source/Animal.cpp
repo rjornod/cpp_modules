@@ -46,3 +46,15 @@ const std::string Animal::getType() const
 {
 	return _type;
 }
+
+void Animal::setIdea(std::string idea)
+{
+	(void)idea;
+	std::cout << "animal setidea called" << std::endl;
+}
+
+void Animal::printIdeas(unsigned int amount)
+{
+	(void)amount;
+	std::cout << "animal getidea called" << std::endl;
+}

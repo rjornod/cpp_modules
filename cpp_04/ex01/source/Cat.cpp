@@ -21,6 +21,7 @@ Cat& Cat::operator=(const Cat& other)
 
 Cat::Cat(const Cat& copy) : Animal(copy), _brain(new Brain(*copy._brain))
 {
+	
 	std::cout << "Cat Copy Constructor called" << std::endl;
 }
 
@@ -37,5 +38,10 @@ void Cat::makeSound() const
 
 void Cat::setIdea(std::string idea)
 {
-	static unsigned int index = 0;
+	this->_brain->setIdea(idea);
+}
+
+void Cat::printIdeas(unsigned int amount)
+{
+	this->_brain->printIdea(amount);
 }
