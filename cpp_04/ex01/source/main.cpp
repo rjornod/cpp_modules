@@ -31,8 +31,6 @@ int main()
 	}
 
 	std::cout << std::endl << RED << "other constructors" << WHITE << std::endl;
-	Animal* dog1 = new Dog();
-	Animal* cat1 = new Cat();
 	Cat original_cat;
 	Dog original_dog;
 
@@ -80,8 +78,6 @@ int main()
 		delete animals[i];
 	}
 	
-	delete cat1; //should not create a leak
-	delete dog1;
 
 	return 0;
 }

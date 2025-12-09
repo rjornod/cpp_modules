@@ -5,13 +5,17 @@
 
 class Brain
 {
+	private:
+		std::string _ideas[100];
+		unsigned int _ideasNr;
 	public:
 		Brain();
 		~Brain();
 		Brain operator=(const Brain& other);
 		Brain(const Brain& copy);
 
-		std::string ideas[100];
+		void setIdea(const std::string& idea);
+		void printIdea(unsigned int amount);
 };
 
 #endif

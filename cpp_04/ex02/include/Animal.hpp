@@ -30,6 +30,8 @@ class Animal
 
 		virtual void 		makeSound() const = 0;
 		const std::string 	getType() const;
+		virtual void 		setIdea(std::string idea);
+		virtual void		printIdeas(unsigned int amount);
 };
 
 #endif

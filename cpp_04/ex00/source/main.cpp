@@ -25,12 +25,12 @@ int main()
 
 
 	std::cout << std::endl << RED << "SOUNDS" << WHITE << std::endl;
-	std::cout << GREEN << "Animal " << WHITE << "sound: " << WHITE;
-	meta->makeSound();
+	std::cout << GREEN << "Default Animal " << WHITE << "sound: " << WHITE;
+	meta->makeSound(); //outputs the default animal sound: ZzZzZzZzZZzZzZzZzZ
 	std::cout << GREEN << "Cat " << WHITE << "sound: ";
-	i->makeSound(); //will output the cat sound!
+	i->makeSound(); //outputs Meow!
 	std::cout << GREEN << "Dog " << WHITE << "sound: ";
-	j->makeSound(); //outputs dog sound!
+	j->makeSound(); //outputs Woof!
 	std::cout << BLUE << "WrongCat " << WHITE << "sound: " << WHITE;
 	k->makeSound(); //outputs ChirpChirp
 	std::cout << BLUE << "WrongAnimal " << WHITE << "sound: " << WHITE;
