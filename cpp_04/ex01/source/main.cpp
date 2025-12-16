@@ -17,7 +17,7 @@ int main()
 	
 	std::cout << RED << "CONSTRUCTORS" << WHITE << std::endl;
 	std::cout << RED << "animals array constructors" << WHITE << std::endl;
-	
+
 	// Creating an array of Animals, half of them will be assigned Cat class 
 	// the other hallf will be assigned a Dog class
 	Animal* animals[size];
@@ -30,9 +30,8 @@ int main()
 		animals[i] = new Cat();
 	}
 
-	std::cout << std::endl << RED << "other constructors" << WHITE << std::endl;
+	std::cout << std::endl << RED << "original_cat and copy_cat constructors" << WHITE << std::endl;
 	Cat original_cat;
-	Dog original_dog;
 
  	// Setting some ideas for the original cat
 	original_cat.setIdea("First Idea");
@@ -66,7 +65,7 @@ int main()
 	copy_cat.setIdea("I am copy cat idea");
 	copy_cat.setIdea("I am another copy cat idea");
 
-	// Printing the ideas for both cats, first 3 idas are the same and the 4th is different for each
+	// Printing the ideas for both cats, first 3 ideas are the same, 4th and 5th are different for each
 	std::cout << RED << "--- ORIGINAL_CAT IDEAS AFTER ADDING ---" << WHITE << std::endl;
 	original_cat.printIdeas(5);
 	std::cout << RED << "--- COPY_CAT IDEAS AFTER ADDING ---" << WHITE << std::endl;

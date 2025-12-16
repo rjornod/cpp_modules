@@ -12,9 +12,9 @@ Cat& Cat::operator=(const Cat& other)
 {
 	if (this != &other)
 	{
-		Animal::operator=(other);
-		delete _brain;
-		_brain = new Brain(*other._brain);
+		Animal::operator=(other); // calls on the parents assigment operator to copy base class data
+		delete _brain; // deletes old brain object, prevents leaks
+		_brain = new Brain(*other._brain); // this is the deep copy, it allocates a new brain object thats being copied from other
 	}
 	return *this;
 }

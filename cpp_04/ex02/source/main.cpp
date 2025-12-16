@@ -33,9 +33,8 @@ int main()
 		animals[i] = new Cat();
 	}
 
-	std::cout << std::endl << RED << "other constructors" << WHITE << std::endl;
+	std::cout << std::endl << RED << "original_cat and copy_cat constructors" << WHITE << std::endl;
 	Cat original_cat;
-	Dog original_dog;
 
  	// Setting some ideas for the original cat
 	original_cat.setIdea("First Idea");

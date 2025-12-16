@@ -9,11 +9,18 @@
 #define GREEN "\033[32m"
 #define YELLOW "\033[33m"
 
+/**
+ * 
+ * 	Polymorphism: when an object can have many forms, using different implementations of an abstract/virtual class. 
+ * Each class inherits some features from the parent class, but implement its functions differently, hence "many forms"
+ * 
+ */
+
 int main()
 {
 	std::cout << std::endl << RED << "CONSTRUCTORS" << WHITE << std::endl;
 	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
+	const Animal* j = new Dog(); // pointer to an Animal object but the actual object being created is a Dog
 	const Animal* i = new Cat();
 	const WrongAnimal* f = new WrongAnimal();
 	const WrongAnimal* k = new WrongCat();
