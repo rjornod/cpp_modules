@@ -1,16 +1,25 @@
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
-
+# define RED "\033[1;31m"
+# define WHITE "\033[0m"
+# define BLUE "\033[34m"
+# define GREEN "\033[32m"
+# define YELLOW "\033[33m"
 # include <iostream>
+# include <exception>
 
 class Bureaucrat
 {
+	private:
+		const std::string _name;
+		int _grade;
+
 	public:
 		// Default Constructor
 		Bureaucrat();
 
 		// Parameterized Constructor
-		Bureaucrat(const std::string _name, int _grade);
+		Bureaucrat(const std::string name, int grade);
 		
 		// Copy Constructor
 		Bureaucrat(const Bureaucrat& other);
@@ -21,11 +30,22 @@ class Bureaucrat
 		// Destructor
 		~Bureaucrat();
 
-		std::string getName();
-		int getGrade();
+		class GradeTooHighException : public std::exception {
+			public:
+				const char* what();
+		};
+
+		class GradeTooLowException : public std::exception {
+			public:
+				const char* what();
+		};
+
+		const std::string getName() const;
+		int getGrade() const;
 		void incGrade();
 		void decGrade();
-		
 };
+
+std::ostream& operator<<(std::ostream& output_stream, const Bureaucrat& bureaucrat);
 
 #endif
