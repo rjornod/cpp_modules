@@ -42,13 +42,21 @@ int Form::getGradeToExecute() const
 {
 	return _gradeToExecute;
 }
+const char* Form::GradeTooHighException::what() const noexcept
+{
+	return "The form grade is too high";
+}
+
+const char* Form::GradeTooLowException::what() const noexcept
+{
+		return "The form grade is too low";
+}
 
 void Form::beSigned(const Bureaucrat& bureaucrat)
 {
 	if (bureaucrat.getGrade() > _gradeToSign)
 		throw GradeTooLowException();
 	_isSigned = true;
-	
 }
 
 std::ostream& operator<<(std::ostream& output_stream, const Form& form)

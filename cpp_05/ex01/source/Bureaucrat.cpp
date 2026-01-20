@@ -27,12 +27,12 @@ Bureaucrat::~Bureaucrat() {
 // Exception messages
 const char* Bureaucrat::GradeTooHighException::what() const noexcept 
 {
-	return "Grade is already the highest, can't decrement further";
+		return "The grade is too high";
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const noexcept 
 {
-	return "Grade is already the lowest, can't increment further";
+		return "The grade is too low";
 }
 
 // Functions to increment and decrement
