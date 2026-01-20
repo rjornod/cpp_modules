@@ -1,12 +1,12 @@
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
+# include <iostream>
+# include <exception>
 # define RED "\033[1;31m"
 # define WHITE "\033[0m"
 # define BLUE "\033[34m"
 # define GREEN "\033[32m"
 # define YELLOW "\033[33m"
-# include <iostream>
-# include <exception>
 
 class Bureaucrat
 {
@@ -25,19 +25,19 @@ class Bureaucrat
 		Bureaucrat(const Bureaucrat& other);
 		
 		// Copy Assignment Operator
-		Bureaucrat& operator=(const Bureaucrat& other);
+		Bureaucrat& operator=(const Bureaucrat& other) = delete;
 		
 		// Destructor
 		~Bureaucrat();
 
 		class GradeTooHighException : public std::exception {
 			public:
-				const char* what();
+				const char* what() const noexcept;
 		};
 
 		class GradeTooLowException : public std::exception {
 			public:
-				const char* what();
+				const char* what() const noexcept;
 		};
 
 		const std::string getName() const;
