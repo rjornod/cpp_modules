@@ -3,10 +3,15 @@
 // Default Constructor
 Bureaucrat::Bureaucrat():_name("Default Bureaucrat"), _grade(150) {
 	std::cout << "Bureaucrat default constructor called" << std::endl;
+
 }
 
 Bureaucrat::Bureaucrat(const std::string name, int grade):_name(name), _grade(grade)
 {
+	if (_grade < 1)
+		throw GradeTooHighException();
+	if (_grade > 150)
+		throw GradeTooLowException();
 	std::cout << "Bureaucrat parameterized constructor called" << std::endl;
 }
 
