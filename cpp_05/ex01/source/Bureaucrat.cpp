@@ -1,4 +1,5 @@
-#include "Bureaucrat.hpp"
+#include "../include/Bureaucrat.hpp"
+#include "../include/Form.hpp"
 
 // Default Constructor
 Bureaucrat::Bureaucrat():_name("Default Bureaucrat"), _grade(150) {
@@ -41,7 +42,7 @@ void Bureaucrat::incGrade()
 {
 
 	if (_grade - 1 < 1)
-		throw GradeTooLowException();
+		throw GradeTooHighException();
 	_grade--;
 
 }
@@ -49,7 +50,7 @@ void Bureaucrat::incGrade()
 void Bureaucrat::decGrade()
 {
 	if (_grade + 1 > 150)
-		throw GradeTooHighException();
+		throw GradeTooLowException();
 	_grade++;
 
 }
@@ -64,10 +65,20 @@ int Bureaucrat::getGrade() const
 	return _grade;
 }
 
+void Bureaucrat::signForm(Form& form)
+{
+	if (_grade >= form.getGradeToSign())
+		form.beSigned(*this);
+	else 
+		throw GradeTooLowException();
+}
+
 //overload of the insertion operator
 std::ostream& operator<<(std::ostream& output_stream, const Bureaucrat& bureaucrat)
 {
 	output_stream <<  bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << ".";
 	return output_stream; //return stream for chaining
 }
+
+
 

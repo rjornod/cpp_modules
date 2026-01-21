@@ -9,7 +9,10 @@ Form::Form():_name("Default Form"), _isSigned(false), _gradeToSign(25), _gradeTo
 //Parameterized Constructor
 Form::Form(std::string name, int gradeToSign, int gradeToExecute):_name(name), _isSigned(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
 {
-
+	if (gradeToSign < 1 || gradeToExecute < 1)
+		throw Form::GradeTooHighException();
+	if (gradeToSign > 150 || gradeToExecute > 150)
+		throw Form::GradeTooLowException();
 }
 
 // Copy Constructor

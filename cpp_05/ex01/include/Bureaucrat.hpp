@@ -2,6 +2,7 @@
 # define BUREAUCRAT_HPP
 # include <iostream>
 # include <exception>
+# include "Form.hpp"
 # define RED "\033[1;31m"
 # define WHITE "\033[0m"
 # define BLUE "\033[34m"
@@ -44,7 +45,7 @@ class Bureaucrat
 		int getGrade() const;
 		void incGrade();
 		void decGrade();
-		void signForm();
+		void signForm(Form& form);
 };
 
 std::ostream& operator<<(std::ostream& output_stream, const Bureaucrat& bureaucrat);
