@@ -67,10 +67,15 @@ int Bureaucrat::getGrade() const
 
 void Bureaucrat::signForm(Form& form)
 {
-	if (_grade >= form.getGradeToSign())
+	try 
+	{
 		form.beSigned(*this);
-	else 
-		throw GradeTooLowException();
+		std::cout << _name << " signed " << form.getName() << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << _name << " couldn't sign " << form.getName() <<" because " << e.what() << std::endl;
+	}
 }
 
 //overload of the insertion operator

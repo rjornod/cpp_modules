@@ -2,7 +2,6 @@ NAME = form
 
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++20
-INC = -I$(INC_PATH)
 
 SRC = Bureaucrat.cpp main.cpp Form.cpp
 HEADERS = $(INC_PATH)/Bureaucrat.hpp $(INC_PATH)/Form.hpp

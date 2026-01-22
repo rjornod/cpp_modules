@@ -4,7 +4,7 @@
 int main(void)
 {
 	Bureaucrat first;
-	Bureaucrat second("Roberto", 1);
+	Bureaucrat second("Roberto", 50);
 	Form valid;
 	
 	try {
@@ -24,6 +24,10 @@ int main(void)
 	{
 		std::cout << e.what() << std::endl;
 	}
+
+	std::cout << "Attempting to sign a form without proper grade" << std::endl;
+	second.signForm(valid);
+
 
 	std::cout << valid;
 
