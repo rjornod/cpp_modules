@@ -14,13 +14,13 @@ class PresidentialPardonForm : public AForm
 		PresidentialPardonForm();
 
 		// Parameterized Constructor
-		PresidentialPardonForm::PresidentialPardonForm(const std::string target);
+		PresidentialPardonForm(const std::string target);
 		
 		// Copy Constructor
 		PresidentialPardonForm(const PresidentialPardonForm& other);
 		
 		// Copy Assignment Operator
-		PresidentialPardonForm& operator=(const PresidentialPardonForm& other) = delete;
+		PresidentialPardonForm& operator=(const PresidentialPardonForm& other);
 		
 		// Destructor
 		~PresidentialPardonForm();

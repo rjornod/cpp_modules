@@ -2,13 +2,19 @@
 # define SHRUBBERYCREATIONFORM_HPP
 
 # include <iostream>
+# include "AForm.hpp"
 
-class ShrubberyCreationForm
+
+class ShrubberyCreationForm : public AForm
 {
 public:
     // Default Constructor
     ShrubberyCreationForm();
     
+	// Parameterized Constructor
+	ShrubberyCreationForm(const std::string target);
+
+
     // Copy Constructor
     ShrubberyCreationForm(const ShrubberyCreationForm& other);
     
