@@ -13,8 +13,8 @@ int main(void)
 	PresidentialPardonForm notsigned("Murderer");
 	try{
 		second.getGrade();
-		test.beSigned(second);
-		test.execute(second);
+		// test.beSigned(second);
+		// test.execute(second);
 		notsigned.execute(second);
 	}
 	catch (AForm::GradeTooLowException &e)
