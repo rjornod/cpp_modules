@@ -39,13 +39,18 @@ class AForm
 				const char* what() const noexcept;
 		};
 
+		class NotSignedException : public std::exception {
+			public:
+				const char* what() const noexcept;
+		};
+
 		
-		virtual std::string getName() const = 0;
+		std::string getName() const;
 		bool getSignedInfo() const;
 		int getGradeToSign() const;
 		int getGradeToExecute() const;
 		void beSigned(const Bureaucrat& bureaucrat);
-		void execute(Bureaucrat const & executor) const;
+		virtual void execute(Bureaucrat const & executor) const = 0;
 };
 
 std::ostream& operator<<(std::ostream& output_stream, const AForm& form);

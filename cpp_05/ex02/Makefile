@@ -3,8 +3,8 @@ NAME = aform
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++20
 
-SRC = Bureaucrat.cpp main.cpp AForm.cpp
-HEADERS = $(INC_PATH)/Bureaucrat.hpp $(INC_PATH)/AForm.hpp
+SRC = Bureaucrat.cpp main.cpp AForm.cpp PresidentialPardonForm.cpp
+HEADERS = $(INC_PATH)/Bureaucrat.hpp $(INC_PATH)/AForm.hpp $(INC_PATH)/PresidentialPardonForm.hpp
 SRC_PATH = source
 OBJ_PATH = obj
 INC_PATH = include
