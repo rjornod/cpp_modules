@@ -1,14 +1,10 @@
-#include "PresidentialPardonForm.hpp"
-#include "Bureaucrat.hpp"
+#include "../include/PresidentialPardonForm.hpp"
+#include "../include/Bureaucrat.hpp"
 
 // Default Constructor
-PresidentialPardonForm::PresidentialPardonForm() {
-    std::cout << "PresidentialPardonForm default constructor called" << std::endl;
-}
-
-//Paremeterized Constructor
-PresidentialPardonForm::PresidentialPardonForm(const std::string target) : AForm("Presidential Pardon", 25, 5) {
+PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("Presidential Pardon", 25, 5) {
 	_target = target;
+    std::cout << "PresidentialPardonForm default constructor called" << std::endl;
 }
 
 // Copy Constructor
@@ -21,7 +17,7 @@ PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& oth
 PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& other) {
     std::cout << "PresidentialPardonForm copy assignment operator called" << std::endl;
     if (this != &other) {
-        // Copy attributes here
+		// Copy attributes here
     }
     return *this;
 }
@@ -37,4 +33,5 @@ void PresidentialPardonForm::execute(Bureaucrat const &executor) const
 		throw NotSignedException();
 	if (executor.getGrade() > getGradeToSign())
 		throw GradeTooLowException();
+	std::cout << _target << " has been pardoned by Zaphod Beeblebrox";
 };
