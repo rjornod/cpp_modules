@@ -9,7 +9,7 @@ int main(void)
 	Bureaucrat first;
 	Bureaucrat second("Roberto", 1);
 
-	PresidentialPardonForm test("Convict");
+	ShrubberyCreationForm test("Convict");
 	PresidentialPardonForm notsigned("Murderer");
 	try{
 		second.getGrade();

@@ -36,5 +36,6 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 		throw GradeTooLowException();
 	std::string title = _target + "_shrubbery";
 	std::ofstream outfile (title);
-	
+	outfile << "tree" << std::endl;
+
 };
