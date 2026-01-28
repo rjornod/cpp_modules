@@ -22,7 +22,8 @@ public:
     // Destructor
     ~RobotomyRequestForm();
 
-	
+	void execute(Bureaucrat const &executor) const override;
+
 };
 
 #endif

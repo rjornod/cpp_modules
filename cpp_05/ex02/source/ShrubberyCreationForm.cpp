@@ -1,4 +1,5 @@
 #include "ShrubberyCreationForm.hpp"
+#include "Bureaucrat.hpp"
 
 // Default Constructor
 ShrubberyCreationForm::ShrubberyCreationForm() {
@@ -24,3 +25,11 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 ShrubberyCreationForm::~ShrubberyCreationForm() {
     std::cout << "ShrubberyCreationForm destructor called" << std::endl;
 }
+
+void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
+{
+	if (getSignedInfo() != 1)
+		throw NotSignedException();
+	if (executor.getGrade() > getGradeToSign())
+		throw GradeTooLowException();
+};

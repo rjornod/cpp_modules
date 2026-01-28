@@ -23,6 +23,9 @@ public:
     
     // Destructor
     ~ShrubberyCreationForm();
+
+	void execute(Bureaucrat const &executor) const override;
+
 };
 
 #endif

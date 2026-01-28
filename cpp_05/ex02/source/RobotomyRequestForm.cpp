@@ -1,4 +1,5 @@
 #include "RobotomyRequestForm.hpp"
+#include "Bureaucrat.hpp"
 
 // Default Constructor
 RobotomyRequestForm::RobotomyRequestForm() {
@@ -24,3 +25,11 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& o
 RobotomyRequestForm::~RobotomyRequestForm() {
     std::cout << "RobotomyRequestForm destructor called" << std::endl;
 }
+
+void RobotomyRequestForm::execute(Bureaucrat const &executor) const
+{
+	if (getSignedInfo() != 1)
+		throw NotSignedException();
+	if (executor.getGrade() > getGradeToSign())
+		throw GradeTooLowException();
+};
