@@ -25,14 +25,6 @@ Intern::~Intern()
 
 AForm* Intern::makeForm(std::string formName, std::string formTarget)
 {
-	switch (form)
-	{
-	case constant expression:
-		/* code */
-		break;
 	
-	default:
-		break;
-	}
 	std::cout << "test";
 }

@@ -9,13 +9,13 @@ int main(void)
 	Bureaucrat first;
 	Bureaucrat second("Roberto", 1);
 
-	ShrubberyCreationForm test("Convict");
+	RobotomyRequestForm test("Convict");
 	PresidentialPardonForm notsigned("Murderer");
 	try{
 		second.getGrade();
 		test.beSigned(second);
 		// test.execute(second);
-		test.execute(second);
+		//test.execute(second);
 		second.executeForm(test);
 	}
 	catch (AForm::GradeTooLowException &e)
