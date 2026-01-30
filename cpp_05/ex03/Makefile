@@ -1,10 +1,10 @@
-NAME = aform
+NAME = intern
 
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++20
 
-SRC = Bureaucrat.cpp main.cpp AForm.cpp PresidentialPardonForm.cpp
-HEADERS = $(INC_PATH)/Bureaucrat.hpp $(INC_PATH)/AForm.hpp $(INC_PATH)/PresidentialPardonForm.hpp
+SRC = Bureaucrat.cpp main.cpp AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp Intern.cpp
+HEADERS = $(INC_PATH)/Bureaucrat.hpp $(INC_PATH)/AForm.hpp $(INC_PATH)/PresidentialPardonForm.hpp $(INC_PATH)/RobotomyRequestForm.hpp $(INC_PATH)/ShrubberyCreationForm.hpp $(INC_PATH)/Intern.hpp
 SRC_PATH = source
 OBJ_PATH = obj
 INC_PATH = include
@@ -24,7 +24,7 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.cpp $(HEADERS) | $(OBJ_PATH)
 
 $(NAME): $(OBJ)
 	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
-	@echo "$(GREEN)"Successfully created the executable ./aform" $(WHITE)"
+	@echo "$(GREEN)"Successfully created the executable ./intern" $(WHITE)"
 clean: 
 	rm -f $(OBJ)
 	rm -rf $(OBJ_PATH)

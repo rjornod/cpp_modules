@@ -10,6 +10,11 @@
 
 class Intern
 {
+	private:
+		AForm* makePresidential(const std::string& target);
+		AForm* makeShrubbery(const std::string& target);
+		AForm* makeRobotomy(const std::string& target);
+
 	public:
 		// Default Constructor
 		Intern();
@@ -22,10 +27,8 @@ class Intern
 		
 		// Destructor
 		~Intern();
-
 		AForm* makeForm(std::string formName, std::string formTarget);
-
+		
 };
-
 
 #endif
