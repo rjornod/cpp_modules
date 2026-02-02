@@ -7,26 +7,21 @@
 class ShrubberyCreationForm : public AForm
 {
 	private:
-		std::string _target;
+		const std::string _target;
 	public:
 		// Default Constructor
-		ShrubberyCreationForm();
-		
-		// Parameterized Constructor
 		ShrubberyCreationForm(const std::string target);
-
 
 		// Copy Constructor
 		ShrubberyCreationForm(const ShrubberyCreationForm& other);
 		
 		// Copy Assignment Operator
-		ShrubberyCreationForm& operator=(const ShrubberyCreationForm& other);
+		ShrubberyCreationForm& operator=(const ShrubberyCreationForm& other) = delete;
 		
 		// Destructor
 		~ShrubberyCreationForm();
 
 		void execute(Bureaucrat const &executor) const override;
-
 };
 
 #endif

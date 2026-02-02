@@ -7,20 +7,17 @@
 class PresidentialPardonForm : public AForm
 {
 	private:
-		std::string _target;
+		const std::string _target;
 
 	public:
 		// Default Constructor
-		PresidentialPardonForm();
-
-		// Parameterized Constructor
 		PresidentialPardonForm(const std::string target);
 		
 		// Copy Constructor
 		PresidentialPardonForm(const PresidentialPardonForm& other);
 		
 		// Copy Assignment Operator
-		PresidentialPardonForm& operator=(const PresidentialPardonForm& other);
+		PresidentialPardonForm& operator=(const PresidentialPardonForm& other) = delete;
 		
 		// Destructor
 		~PresidentialPardonForm();

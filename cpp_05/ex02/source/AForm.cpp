@@ -4,7 +4,7 @@
 // Default Constructor
 AForm::AForm():_name("Default AForm"), _isSigned(false), _gradeToSign(50), _gradeToExecute(5) 
 {
-    std::cout << "AForm default constructor called" << std::endl;
+   // std::cout << "AForm default constructor called" << std::endl;
 }
 
 //Parameterized Constructor
@@ -19,12 +19,12 @@ AForm::AForm(std::string name, int gradeToSign, int gradeToExecute):_name(name),
 // Copy Constructor
 AForm::AForm(const AForm& other):_name(other._name), _isSigned(false), _gradeToSign(other._gradeToSign), _gradeToExecute(other._gradeToExecute) 
 {
-    std::cout << "AForm copy constructor called" << std::endl;
+    //std::cout << "AForm copy constructor called" << std::endl;
 }
 
 // Destructor
 AForm::~AForm() {
-    std::cout << "AForm destructor called" << std::endl;
+    //std::cout << "AForm destructor called" << std::endl;
 }
 
 std::string AForm::getName() const

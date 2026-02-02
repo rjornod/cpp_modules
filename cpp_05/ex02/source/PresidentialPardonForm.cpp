@@ -2,29 +2,18 @@
 #include "../include/Bureaucrat.hpp"
 
 // Default Constructor
-PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("Presidential Pardon", 25, 5) {
-	_target = target;
-    std::cout << "PresidentialPardonForm default constructor called" << std::endl;
+PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("Presidential Pardon", 25, 5), _target(target) {
+    //std::cout << "PresidentialPardonForm default constructor called" << std::endl;
 }
 
 // Copy Constructor
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other) : AForm("Presidential Pardon", 25, 5), _target(other._target){
-    std::cout << "PresidentialPardonForm copy constructor called" << std::endl;
-    *this = other;
-}
-
-// Copy Assignment Operator
-PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& other) {
-    std::cout << "PresidentialPardonForm copy assignment operator called" << std::endl;
-    if (this != &other) {
-		// Copy attributes here
-    }
-    return *this;
+    //std::cout << "PresidentialPardonForm copy constructor called" << std::endl;
 }
 
 // Destructor
 PresidentialPardonForm::~PresidentialPardonForm() {
-    std::cout << "PresidentialPardonForm destructor called" << std::endl;
+   // std::cout << "PresidentialPardonForm destructor called" << std::endl;
 }
 
 void PresidentialPardonForm::execute(Bureaucrat const &executor) const
@@ -33,5 +22,5 @@ void PresidentialPardonForm::execute(Bureaucrat const &executor) const
 		throw NotSignedException();
     if (executor.getGrade() > getGradeToExecute())
 		throw GradeTooLowException();
-	std::cout << _target << " has been pardoned by Zaphod Beeblebrox";
+	std::cout << YELLOW << _target << " has been pardoned by Zaphod Beeblebrox" << WHITE << std::endl;
 };

@@ -3,7 +3,7 @@
 
 // Default Constructor
 Bureaucrat::Bureaucrat():_name("Default Bureaucrat"), _grade(150) {
-	std::cout << "Bureaucrat default constructor called" << std::endl;
+	//std::cout << "Bureaucrat default constructor called" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const std::string name, int grade):_name(name), _grade(grade)
@@ -12,17 +12,17 @@ Bureaucrat::Bureaucrat(const std::string name, int grade):_name(name), _grade(gr
 		throw GradeTooHighException();
 	if (_grade > 150)
 		throw GradeTooLowException();
-	std::cout << "Bureaucrat parameterized constructor called" << std::endl;
+	//std::cout << "Bureaucrat parameterized constructor called" << std::endl;
 }
 
 // Copy Constructor
 Bureaucrat::Bureaucrat(const Bureaucrat& other): _name(other._name), _grade(other._grade) {
-	std::cout << "Bureaucrat copy constructor called" << std::endl;
+	//std::cout << "Bureaucrat copy constructor called" << std::endl;
 }
 
 // Destructor
 Bureaucrat::~Bureaucrat() {
-	std::cout << "Bureaucrat destructor called" << std::endl;
+	//std::cout << "Bureaucrat destructor called" << std::endl;
 }
 
 // Exception messages

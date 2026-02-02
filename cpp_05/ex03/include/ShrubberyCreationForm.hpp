@@ -12,7 +12,6 @@ class ShrubberyCreationForm : public AForm
 		// Default Constructor
 		ShrubberyCreationForm(const std::string target);
 
-
 		// Copy Constructor
 		ShrubberyCreationForm(const ShrubberyCreationForm& other);
 		
@@ -23,7 +22,6 @@ class ShrubberyCreationForm : public AForm
 		~ShrubberyCreationForm();
 
 		void execute(Bureaucrat const &executor) const override;
-
 };
 
 #endif
