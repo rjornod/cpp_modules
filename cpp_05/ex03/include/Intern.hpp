@@ -8,6 +8,12 @@
 # define GREEN "\033[32m"
 # define YELLOW "\033[33m"
 
+/*
+		The intern class does not hold any variables with data we don't need the copy constructor
+	or copy assignment operator.
+		This means we can delete them since there is no data to copy.
+*/
+
 class Intern
 {
 	private:
@@ -20,15 +26,15 @@ class Intern
 		Intern();
 		
 		// Copy Constructor
-		Intern(const Intern& other);
+		Intern(const Intern& other) = delete;
 		
 		// Copy Assignment Operator
 		Intern& operator=(const Intern& other) = delete;
 		
 		// Destructor
 		~Intern();
+
 		AForm* makeForm(std::string formName, std::string formTarget);
-		
 };
 
 #endif
