@@ -1,15 +1,15 @@
-#include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "../include/Bureaucrat.hpp"
+#include "../include/Form.hpp"
 
 int main(void)
 {
-	Bureaucrat first;
-	Bureaucrat second("Roberto", 50);
-	Form valid;
+	Bureaucrat first("GradeTooLow", 150);
+	Bureaucrat second("Roberto", 1);
+	Form valid("TEST", 25, 20);
 	
 	try {
-		std::cout << "Attempting to create form with grade too high" << std::endl;
-		Form invalid("Name", 0, 150);
+		std::cout << GREEN << "\n[Attempting to create form with grade too high (0)]" << WHITE << std::endl;
+		Form invalid("Invalid", 0, 150);
 	}
 	catch (Form::GradeTooHighException &e)
 	{
@@ -17,18 +17,30 @@ int main(void)
 	}
 
 	try {
-		std::cout << "Attempting to create a Bureaucrat with grade too low" << std::endl;
-		Bureaucrat toolow("Invalid", 151);
+		std::cout << GREEN << "\n[Attempting to create form with grade too low (151)]" << WHITE << std::endl;
+		Form invalid("Invalid", 151, 150);
 	}
-	catch (Bureaucrat::GradeTooLowException &e)
+	catch (Form::GradeTooLowException &e)
 	{
 		std::cout << e.what() << std::endl;
 	}
 
-	std::cout << "Attempting to sign a form without proper grade" << std::endl;
+	// try {
+	// 	std::cout << GREEN << "\n[Attempting to create a Bureaucrat with grade too low]" << WHITE << std::endl;
+	// 	Bureaucrat toolow("Invalid", 151);
+	// }
+	// catch (Bureaucrat::GradeTooLowException &e)
+	// {
+	// 	std::cout << e.what() << std::endl;
+		
+	// }
+
+	std::cout << GREEN << "\n[Attempting to sign a form with too low of a grade]" << WHITE << std::endl;
+	first.signForm(valid);
+
+	std::cout << GREEN << "\n[Attempting to sign a form with proper grade]" << WHITE << std::endl;
 	second.signForm(valid);
 
-
+	std::cout << GREEN << "\n[Printing form details]" << WHITE << std::endl;
 	std::cout << valid;
-
 }
