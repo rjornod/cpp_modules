@@ -73,7 +73,7 @@ void AForm::execute(Bureaucrat const &executor) const
 {
 	if (getSignedInfo() != 1)
 		throw NotSignedException();
-	if (executor.getGrade() > getGradeToSign())
+	if (executor.getGrade() > getGradeToExecute())
 		throw GradeTooLowException();
 } 
 

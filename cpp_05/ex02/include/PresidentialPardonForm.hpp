@@ -8,7 +8,6 @@ class PresidentialPardonForm : public AForm
 {
 	private:
 		const std::string _target;
-
 	public:
 		// Default Constructor
 		PresidentialPardonForm(const std::string target);

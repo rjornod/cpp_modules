@@ -10,7 +10,7 @@ int main(void)
 	Bureaucrat second("Roberto", 1);
 
 	RobotomyRequestForm test("Convict");
-	ShrubberyCreationForm shub("yard");
+	ShrubberyCreationForm shrub("yard");
 	PresidentialPardonForm pardon("Murderer");
 	std::cout << BLUE << "PRESIDENTIAL PARDON TESTS" << WHITE << std::endl;
 	try{
@@ -81,8 +81,8 @@ int main(void)
 	std::cout << BLUE << "\n\nSHRUBBERY CREATION TESTS" << WHITE << std::endl;
 	try{
 		std::cout << GREEN << "\n [Trying to sign with grade too low]" << WHITE << std::endl;
-		std::cout << "Bureaucrats grade is " << first.getGrade() << ". The form requires grade " << shub.getGradeToSign() << " to be signed" << std::endl;
-		shub.beSigned(first);
+		std::cout << "Bureaucrats grade is " << first.getGrade() << ". The form requires grade " << shrub.getGradeToSign() << " to be signed" << std::endl;
+		shrub.beSigned(first);
 	}
 	catch (AForm::GradeTooLowException &e)
 	{
@@ -90,7 +90,7 @@ int main(void)
 	}
 	try{
 		std::cout << GREEN << "\n [Trying to execute without the form being signed]" << WHITE << std::endl;
-		shub.execute(first);
+		shrub.execute(first);
 	}
 	catch (AForm::NotSignedException &e)
 	{
@@ -98,16 +98,16 @@ int main(void)
 	}
 	try{
 		std::cout << GREEN << "\n [Trying to excute with too low of a grade]" << WHITE << std::endl;
-		shub.beSigned(second);
-		std::cout << "Bureaucrats grade is " << first.getGrade() << ". The form requires grade " << shub.getGradeToExecute() << " to be executed" << std::endl;
-		shub.execute(first);
+		shrub.beSigned(second);
+		std::cout << "Bureaucrats grade is " << first.getGrade() << ". The form requires grade " << shrub.getGradeToExecute() << " to be executed" << std::endl;
+		shrub.execute(first);
 	}
 	catch (AForm::GradeTooLowException &e)
 	{
 		std::cout << RED << "ERROR: " << WHITE << e.what() << std::endl;
 	}
 	std::cout << GREEN << "\n [Trying to sign and execute the form correctly]" << WHITE << std::endl;
-	shub.beSigned(second);
-	std::cout << "Bureaucrats grade is " << second.getGrade() << ". The form requires grade " << shub.getGradeToExecute() << " to be executed" << std::endl;
-	shub.execute(second);
+	shrub.beSigned(second);
+	std::cout << "Bureaucrats grade is " << second.getGrade() << ". The form requires grade " << shrub.getGradeToExecute() << " to be executed" << std::endl;
+	shrub.execute(second);
 }

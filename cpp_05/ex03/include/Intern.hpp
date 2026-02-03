@@ -13,7 +13,6 @@
 	or copy assignment operator.
 		This means we can delete them since there is no data to copy.
 */
-
 class Intern
 {
 	private:

@@ -1,5 +1,7 @@
 #include "../include/RobotomyRequestForm.hpp"
 #include "../include/Bureaucrat.hpp"
+#include <cstdlib>
+#include <ctime>
 
 // Default Constructor
 RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm ("Robotomy Request Form", 72, 45), _target(target)

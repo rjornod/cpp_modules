@@ -42,7 +42,7 @@ void Bureaucrat::incGrade()
 {
 
 	if (_grade - 1 < 1)
-		throw GradeTooLowException();
+		throw GradeTooHighException();
 	_grade--;
 
 }
@@ -50,7 +50,7 @@ void Bureaucrat::incGrade()
 void Bureaucrat::decGrade()
 {
 	if (_grade + 1 > 150)
-		throw GradeTooHighException();
+		throw GradeTooLowException();
 	_grade++;
 
 }
