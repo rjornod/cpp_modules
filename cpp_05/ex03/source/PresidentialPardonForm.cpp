@@ -3,17 +3,17 @@
 
 // Default Constructor
 PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("Presidential Pardon", 25, 5), _target(target) {
-    std::cout << "PresidentialPardonForm default constructor called" << std::endl;
+  //  std::cout << "PresidentialPardonForm default constructor called" << std::endl;
 }
 
 // Copy Constructor
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other) : AForm("Presidential Pardon", 25, 5), _target(other._target){
-    std::cout << "PresidentialPardonForm copy constructor called" << std::endl;
+ //   std::cout << "PresidentialPardonForm copy constructor called" << std::endl;
 }
 
 // Destructor
 PresidentialPardonForm::~PresidentialPardonForm() {
-    std::cout << "PresidentialPardonForm destructor called" << std::endl;
+  //  std::cout << "PresidentialPardonForm destructor called" << std::endl;
 }
 
 void PresidentialPardonForm::execute(Bureaucrat const &executor) const

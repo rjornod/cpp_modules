@@ -11,14 +11,15 @@ int main(void)
 	AForm* robot;
 	AForm* shrub;
 	AForm* pardon;
-	AForm* badName;
 	Bureaucrat second("Roberto", 1);
 	Bureaucrat low("GradeTooLow", 150);
 
 	std::cout << BLUE << "ROBOTOMY FORM TEST" << WHITE << std::endl;
 	robot = intern.makeForm("robotomy", "random person");
 	second.signForm(*robot);
+	std::cout << YELLOW << "[Trying to execute with too low grade]" << WHITE << std::endl;
 	low.executeForm(*robot);
+	std::cout << YELLOW << "[Trying to execute with a high enough grade]" << WHITE << std::endl;
 	second.executeForm(*robot);
 	delete robot;
 
@@ -26,17 +27,21 @@ int main(void)
 	std::cout << BLUE << "\nSHRUBBERY FORM TEST" << WHITE << std::endl;
 	shrub = intern.makeForm("shrubbery", "yard");
 	second.signForm(*shrub);
+	std::cout << YELLOW << "[Trying to execute with too low grade]" << WHITE << std::endl;
 	low.executeForm(*shrub);
+	std::cout << YELLOW << "[Trying to execute with a high enough grade]" << WHITE << std::endl;
 	second.executeForm(*shrub);
 	delete shrub;
 
 	std::cout << BLUE << "\nPARDON FORM TEST" << WHITE << std::endl;
 	pardon = intern.makeForm("pardon", "murderer");
 	second.signForm(*pardon);
+	std::cout << YELLOW << "[Trying to execute with too low grade]" << WHITE << std::endl;
 	low.executeForm(*pardon);
+	std::cout << YELLOW << "[Trying to execute with a high enough grade]" << WHITE << std::endl;
 	second.executeForm(*pardon);
 	delete pardon;
 
 	std::cout << BLUE << "\nUNKOWN FORM TEST" << WHITE << std::endl;
-	badName = intern.makeForm("badname", "test");
+	intern.makeForm("badname", "test");
 }

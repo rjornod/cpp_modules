@@ -6,17 +6,17 @@
 // Default Constructor
 RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm ("Robotomy Request Form", 72, 45), _target(target)
 {
-    std::cout << "RobotomyRequestForm default constructor called" << std::endl;
+ //   std::cout << "RobotomyRequestForm default constructor called" << std::endl;
 }
 
 // Copy Constructor
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other) : AForm ("Robotomy Request Form", 72, 45), _target(other._target) {
-    std::cout << "RobotomyRequestForm copy constructor called" << std::endl;
+ //   std::cout << "RobotomyRequestForm copy constructor called" << std::endl;
 }
 
 // Destructor
 RobotomyRequestForm::~RobotomyRequestForm() {
-    std::cout << "RobotomyRequestForm destructor called" << std::endl;
+ //   std::cout << "RobotomyRequestForm destructor called" << std::endl;
 }
 
 void RobotomyRequestForm::execute(Bureaucrat const &executor) const

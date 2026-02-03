@@ -7,12 +7,12 @@
 
 Intern::Intern()
 {
-	std::cout << "Intern Constructor called" << std::endl;
+//	std::cout << "Intern Constructor called" << std::endl;
 }
 
 Intern::~Intern()
 {
-	std::cout << "Intern destructor called" << std::endl;
+//	std::cout << "Intern destructor called" << std::endl;
 }
 
 AForm* Intern::makePresidential(const std::string& target)
