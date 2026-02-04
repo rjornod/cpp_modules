@@ -28,8 +28,8 @@ void RobotomyRequestForm::execute(Bureaucrat const &executor) const
     srand(time(0));
     int num = rand() % 2 + 1;
     std::cout << "*DRILLING NOISES*" << std::endl;
-    if (num == 1)
-        std::cout << _target << " has been robotomized successfully!" << std::endl;
+	if (num == 1)
+        std::cout << _target << YELLOW << " has been robotomized successfully!" << WHITE << std::endl;
     else 
-        std::cout << "The robotomization has failed!" << std::endl;
+        std::cout << YELLOW << "The robotomization has failed!" << WHITE << std::endl;
 };

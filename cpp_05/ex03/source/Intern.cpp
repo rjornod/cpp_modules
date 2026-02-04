@@ -19,14 +19,17 @@ AForm* Intern::makePresidential(const std::string& target)
 {
 	return new PresidentialPardonForm(target);
 }
+
 AForm* Intern::makeShrubbery(const std::string& target)
 {
 	return new ShrubberyCreationForm(target);
 }
+
 AForm* Intern::makeRobotomy(const std::string& target)
 {
 	return new RobotomyRequestForm(target);
 }
+
 struct FormMake {
     const char* name;
     AForm* (Intern::*func)(const std::string&);

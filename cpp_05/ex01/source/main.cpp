@@ -3,8 +3,8 @@
 
 int main(void)
 {
-	Bureaucrat first("GradeTooLow", 150);
-	Bureaucrat second("Roberto", 1);
+	Bureaucrat first("New hire", 150);
+	Bureaucrat second("President", 1);
 	Form valid("TEST", 25, 20);
 	
 	try {

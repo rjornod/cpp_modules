@@ -11,8 +11,9 @@ int main(void)
 	AForm* robot;
 	AForm* shrub;
 	AForm* pardon;
-	Bureaucrat second("Roberto", 1);
-	Bureaucrat low("GradeTooLow", 150);
+	AForm* unknown;
+	Bureaucrat second("President", 1);
+	Bureaucrat low("New hire", 150);
 
 	std::cout << BLUE << "ROBOTOMY FORM TEST" << WHITE << std::endl;
 	robot = intern.makeForm("robotomy", "random person");
@@ -42,6 +43,8 @@ int main(void)
 	second.executeForm(*pardon);
 	delete pardon;
 
-	std::cout << BLUE << "\nUNKOWN FORM TEST" << WHITE << std::endl;
-	intern.makeForm("badname", "test");
+	std::cout << BLUE << "\nUNKNOWN FORM TEST" << WHITE << std::endl;
+	unknown = intern.makeForm("badname", "test");
+	if (unknown)
+		delete unknown;
 }

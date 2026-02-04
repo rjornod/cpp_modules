@@ -6,8 +6,8 @@
 
 int main(void)
 {
-	Bureaucrat first("GradeTooLow", 150);
-	Bureaucrat second("Roberto", 1);
+	Bureaucrat first("New hire", 150);
+	Bureaucrat second("President", 1);
 
 	RobotomyRequestForm test("Convict");
 	ShrubberyCreationForm shrub("yard");

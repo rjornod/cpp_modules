@@ -2,28 +2,29 @@
 
 int main(void)
 {
-	Bureaucrat first;
+	Bureaucrat first("New hire", 150);
+	std::cout << "Bureaucreats name: " << GREEN << first.getName() << WHITE << std::endl;
+	std::cout << "Bureaucrats grade: " << first.getGrade() << WHITE << std::endl;
+	Bureaucrat second("President", 1);
+	std::cout << "\nBureaucreats name: " << GREEN << second.getName() << WHITE << std::endl;
+	std::cout << "Bureaucrats grade: " << second.getGrade() << WHITE << std::endl;
 	
-	Bureaucrat second("Roberto", 1);
-	std::cout << second.getName() << std::endl;
-	std::cout << second.getGrade() << std::endl;
-	
-	std::cout << GREEN << "INCREMENT AND DECREMENT EDGE CASES" << WHITE << std::endl;
-	std::cout << YELLOW << "[Trying to decrement a grade that is already 150]" << WHITE << std::endl;
+	std::cout << GREEN << "\nINCREMENT AND DECREMENT EDGE CASES" << WHITE << std::endl;
+	std::cout << YELLOW << "[Trying to decrement New hire's grade (150) ]" << WHITE << std::endl;
 	try {
 		
 		first.decGrade(); // gade is already 150
 	}
 	catch (Bureaucrat::GradeTooLowException &e) {
-		std::cerr << e.what() << std::endl;
+		std::cout << e.what() << std::endl;
 	}
 
-	std::cout << YELLOW << "\n [Trying to increment a grade that is already 1]" << WHITE << std::endl;
+	std::cout << YELLOW << "\n[Trying to increment Presidents grade (1) ]" << WHITE << std::endl;
 	try {
 		second.incGrade(); // gade is already 1
 	}
 	catch (Bureaucrat::GradeTooHighException &e) {
-		std::cerr << e.what() << std::endl;
+		std::cout << e.what() << std::endl;
 	}
 
 	std::cout << GREEN << "\nBUREAUCRAT CREATION WITH INVALID GRADES" << WHITE << std::endl;
