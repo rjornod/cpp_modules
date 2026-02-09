@@ -13,15 +13,15 @@ int main(void)
 	std::cout << YELLOW << "[Trying to decrement New hire's grade (150) ]" << WHITE << std::endl;
 	try {
 		
-		first.decGrade(); // gade is already 150
+		first.decGrade(); // grade is already 150
 	}
-	catch (Bureaucrat::GradeTooLowException &e) {
+	catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
 
 	std::cout << YELLOW << "\n[Trying to increment Presidents grade (1) ]" << WHITE << std::endl;
 	try {
-		second.incGrade(); // gade is already 1
+		second.incGrade(); // grade is already 1
 	}
 	catch (Bureaucrat::GradeTooHighException &e) {
 		std::cout << e.what() << std::endl;
@@ -32,7 +32,7 @@ int main(void)
 	try {
 		Bureaucrat third("Fail", 151);
 	}
-	catch (Bureaucrat::GradeTooLowException &e) {
+	catch (std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
 

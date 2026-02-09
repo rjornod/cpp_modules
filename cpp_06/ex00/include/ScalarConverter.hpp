@@ -1,6 +1,9 @@
 #ifndef SCALARCONVERTER_HPP
 # define SCALARCONVERTER_HPP
-
+# define CHAR 1
+# define INT 2
+# define FLOAT 3
+# define DOUBLE 4
 # include <iostream>
 
 class ScalarConverter
@@ -18,7 +21,8 @@ public:
     // Destructor
     ~ScalarConverter();
 
-    static std::string convert(std::string string);
+	static void convert(const std::string& string);
+
 };
 
 #endif
