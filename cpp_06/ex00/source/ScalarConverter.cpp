@@ -5,17 +5,23 @@
 #include <cmath>
 #include <iomanip>
 #include <limits.h>
+#define RED "\033[1;31m"
+#define WHITE "\033[0m"
+#define BLUE "\033[34m"
+#define GREEN "\033[32m"
+#define YELLOW "\033[33m"
+
 
 int type = 0;
 
 // Default Constructor
 ScalarConverter::ScalarConverter() {
-    std::cout << "ScalarConverter default constructor called" << std::endl;
+    // std::cout << "ScalarConverter default constructor called" << std::endl;
 }
 
 // Copy Constructor
 ScalarConverter::ScalarConverter(const ScalarConverter& other) {
-    std::cout << "ScalarConverter copy constructor called" << std::endl;
+    // std::cout << "ScalarConverter copy constructor called" << std::endl;
     *this = other;
 }
 
@@ -171,6 +177,7 @@ void ScalarConverter::convert(const std::string& string)
 			foundInt(string);
 			break;
 		default:
+			std::cout << RED << "Parameter not recognized. Try with an INT, FLOAT, CHAR or DOUBLE" << WHITE << std::endl;
 			break;
 	}
 }
