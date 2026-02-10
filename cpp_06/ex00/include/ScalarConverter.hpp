@@ -11,13 +11,13 @@ class ScalarConverter
 public:
     // Default Constructor
     ScalarConverter();
-    
+
     // Copy Constructor
     ScalarConverter(const ScalarConverter& other);
-    
+
     // Copy Assignment Operator
     ScalarConverter& operator=(const ScalarConverter& other);
-    
+
     // Destructor
     ~ScalarConverter();
 
