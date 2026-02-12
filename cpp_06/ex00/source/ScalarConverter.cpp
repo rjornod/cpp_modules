@@ -10,9 +10,13 @@
 #define BLUE "\033[34m"
 #define GREEN "\033[32m"
 #define YELLOW "\033[33m"
+#define IMPOSSIBLE -1
+#define NON_PRINT 0
+#define CHAR 1
+#define INT 2
+#define FLOAT 3
+#define DOUBLE 4
 
-
-int type = 0;
 
 // Default Constructor
 ScalarConverter::ScalarConverter() {
@@ -56,12 +60,14 @@ static int detectType(std::string string)
 }
 
 //simply checks if the character is printable and returns true or false
-static bool checkIfPrintable(char character)
+static int checkIfPrintable(int character)
 {
-	if (character >= 32 && character <= 126)
-		return true;
+	if (character < 0 || character > 127)
+		return (IMPOSSIBLE);
+	if (character < 32 || character == 127)
+		return (NON_PRINT);
 	else
-		return false;
+		return 1;
 }
 
 static bool checkDecimalDouble(double dVal)
@@ -94,13 +100,20 @@ static void foundInt(std::string string)
 
 		int intVal = std::stoi(string);								// converting from string to int
 		std::cout << "int: " << intVal << std::endl; 				// printing the integer value
-		if (checkIfPrintable(intVal)) 								// check if the integer value is printable or not
+		switch (checkIfPrintable(intVal))
 		{
-			char d = static_cast<char>(intVal);						// if it is cast intVal to char and print it
-			std::cout << "char: " << d << std::endl;
+			case IMPOSSIBLE:
+				std::cout << "char: impossible" << std::endl;
+				break;
+			case NON_PRINT:
+				std::cout << "char: Non displayable" << std::endl;		// if not display an error message
+				break;
+			default:
+				char d = static_cast<char>(intVal);						// if it is cast intVal to char and print it
+				std::cout << "char: " << d << std::endl;
+				break;
 		}
-		else
-			std::cout << "char: Non displayable" << std::endl;		// if not display an error message
+		
 		float f = static_cast<float>(intVal);						// explicit casting from char to float
 		std::cout << "float: " << f << ".0f" << std::endl;
 
@@ -121,20 +134,7 @@ static void foundDouble(std::string string)
 	try{
 		// convert from string to double
 		double doubleVal = std::stod(string);
-		if (checkDecimalDouble(doubleVal))								// check if the value contains decimals, if not we add .0 to the output ot
-			std::cout << "double: " << doubleVal << std::endl;			// if it does we just print the output as is
-		else
-			std::cout << "double: " << doubleVal << ".0" << std::endl;	// if not we add a '.0' after the output
-		
-		// casting to char
-		if (checkIfPrintable(doubleVal)) 								// check if the integer value is printable or not
-		{
-			char d = static_cast<char>(doubleVal);						// if it is, cast intVal to char and print it
-			std::cout << "char: " << d << std::endl;
-		}
-		else
-			std::cout << "char: Non displayable" << std::endl;
-		
+
 		//casting to int
 		if (doubleVal >= INT_MIN && doubleVal <= INT_MAX)				// check if doubleVal would fit in an integer
 		{
@@ -144,6 +144,35 @@ static void foundDouble(std::string string)
 		else
 			std::cout << "int : impossible" << std::endl;				// otherwise we output an impossible message
 
+		// casting to char
+		switch (checkIfPrintable(doubleVal))
+		{
+		case IMPOSSIBLE:
+			std::cout << "char: impossible" << std::endl;
+			break;
+		case NON_PRINT:
+			std::cout << "char: Non displayable" << std::endl;			// if not display an error message
+			break;
+		default:
+			char d = static_cast<char>(doubleVal);						// if it is cast intVal to char and print it
+			std::cout << "char: " << d << std::endl;
+			break;
+		}
+
+		float floatVal = static_cast<float>(doubleVal);
+		
+		if (checkDecimalDouble(doubleVal))									// check if the value contains decimals, if not we add .0 to the output ot
+			{
+				std::cout << "float: " << floatVal << "f" << std::endl;			// FIX: need to print f and/or .0 after number
+				std::cout << "double: " << doubleVal << std::endl;				// if it does we just print the output as is
+			}
+		else
+		{
+
+			std::cout <<  "float: " << floatVal << ".0f" << std::endl;
+			std::cout << std::fixed;
+			std::cout <<"double: " << doubleVal << std::endl;	// if not we add a '.0' after the output
+			}
 	}
 	catch(std::exception &e)
 	{
@@ -153,8 +182,67 @@ static void foundDouble(std::string string)
 
 static void foundFloat(std::string string)
 {
+	
+
 	std::cout << "Found a float" << std::endl;
-	std::cout << "double: " << string << std::endl;
+	try {
+			double doubleVal = std::stod(string);
+
+			//casting to int
+			if (doubleVal >= INT_MIN && doubleVal <= INT_MAX)				// check if doubleVal would fit in an integer
+			{
+				int intVal = static_cast<int>(doubleVal);					// if it does we do a normal static cast and output the value
+				std::cout << "int: " << intVal << std::endl;
+			}
+			else
+				std::cout << "int : impossible" << std::endl;				// otherwise we output an impossible message
+
+			switch (checkIfPrintable(doubleVal))
+			{
+			case IMPOSSIBLE:
+				std::cout << "char: impossible" << std::endl;
+				break;
+			case NON_PRINT:
+				std::cout << "char: Non displayable" << std::endl;			// if not display an error message
+				break;
+			default:
+				char d = static_cast<char>(doubleVal);						// if it is cast intVal to char and print it
+				std::cout << "char: " << d << std::endl;
+				break;
+			}
+
+			
+			if (doubleVal >= INT_MIN && doubleVal <= INT_MAX)				// check if doubleVal would fit in an integer
+			{
+				int intVal = static_cast<int>(doubleVal);					// if it does we do a normal static cast and output the value
+				std::cout << "int: " << intVal << std::endl;
+			}
+			else
+				std::cout << "int : impossible" << std::endl;				// otherwise we output an impossible message
+			
+			
+			
+			
+			float floatVal = static_cast<float>(doubleVal);
+
+			doubleVal = static_cast<double>(floatVal);
+			if (checkDecimalDouble(doubleVal))									// check if the value contains decimals, if not we add .0 to the output ot
+			{
+				std::cout << "float: " << floatVal << "f" << std::endl;			// FIX: need to print f and/or .0 after number
+				std::cout << "double: " << doubleVal << std::endl;				// if it does we just print the output as is
+			}
+			else
+			{
+
+				std::cout << "float: " << floatVal << ".0f" << std::endl;
+				std::cout << "double: " << doubleVal << ".0" << std::endl;	// if not we add a '.0' after the output
+			}
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "ERROR: " << e.what() << std::endl;
+	}
+	
 
 }
 
