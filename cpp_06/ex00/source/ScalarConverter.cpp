@@ -16,46 +16,56 @@
 #define INT 2
 #define FLOAT 3
 #define DOUBLE 4
-
+#define PSEUDO 5
 
 // Default Constructor
 ScalarConverter::ScalarConverter() {
     // std::cout << "ScalarConverter default constructor called" << std::endl;
 }
 
-// Copy Constructor
-ScalarConverter::ScalarConverter(const ScalarConverter& other) {
-    // std::cout << "ScalarConverter copy constructor called" << std::endl;
-    *this = other;
-}
-
-// Copy Assignment Operator
-ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other) {
-    std::cout << "ScalarConverter copy assignment operator called" << std::endl;
-    if (this != &other) {
-        // Copy attributes here
-    }
-    return *this;
-}
-
 // Destructor
 ScalarConverter::~ScalarConverter() {
-    std::cout << "ScalarConverter destructor called" << std::endl;
+    // std::cout << "ScalarConverter destructor called" << std::endl;
+}
+
+static void foundPseudoLiteral(std::string string)
+{
+
+	std::cout << "int: impossible" << std::endl;
+	std::cout << "char: impossble" << std::endl;
+	if (string == "nan" || string == "nanf")
+	{
+		std::cout << "float: nanf" << std::endl;
+		std::cout << "double: nan" << std::endl;
+	}
+
+	if (string == "+inf" || string == "+inff")
+	{
+		std::cout << "float: +inff" << std::endl;
+		std::cout << "double: +inf" << std::endl;
+	}
+	if (string == "-inf" || string == "-inff")
+	{
+		std::cout << "float: -inff" << std::endl;
+		std::cout << "double: -inf" << std::endl;
+	}
 }
 
 static int detectType(std::string string)
 {	std::regex charPattern(R"(^[\x21-\x2f\x3a-\x7e]$)");	// this range include all printable characters except digits
 	if (std::regex_match(string, charPattern))
 		return(CHAR);
-	std::regex floatPattern(R"(^[+-]?[0-9]+\.[0-9]+f$)");
+	std::regex floatPattern(R"(^[+-]?[0-9]+\.[0-9]+f$)");	// this range matches floats by checking for a '.' in the middle and an 'f' at the end
 	if (std::regex_match(string, floatPattern))
 		return(FLOAT);
-	std::regex doublePattern(R"(^[+-]?[0-9]+\.[0-9]+$)");
+	std::regex doublePattern(R"(^[+-]?[0-9]+\.[0-9]+$)"); 	// this range maches a double by checking for a dot in the middle of digits
 	if (std::regex_match(string, doublePattern))
 		return (DOUBLE);
-	std::regex intPattern(R"(^[+-]?[0-9]+$)");
+	std::regex intPattern(R"(^[+-]?[0-9]+$)");				// this range matches only digits
 	if (std::regex_match(string, intPattern))
 	 	return(INT);
+	if (string == "nan" || string == "nanf" || string == "-inf" || string == "+inf" || string == "-inff" || string == "+inff") // if nothing matches so far we check for pseudoliterals
+		return (PSEUDO);
 	return (-1);
 }
 
@@ -74,7 +84,6 @@ static bool checkDecimalDouble(double dVal)
 {
 	return (std::floor(dVal) != dVal);
 }
-
 
 
 static void foundChar(std::string string)
@@ -160,19 +169,20 @@ static void foundDouble(std::string string)
 		}
 
 		float floatVal = static_cast<float>(doubleVal);
-		
-		if (checkDecimalDouble(doubleVal))									// check if the value contains decimals, if not we add .0 to the output ot
+
+		std::cout << std::fixed;
+
+		if (checkDecimalDouble(doubleVal))								// check if the value contains decimals, if not we add .0 to the output ot
 			{
-				std::cout << "float: " << floatVal << "f" << std::endl;			// FIX: need to print f and/or .0 after number
-				std::cout << "double: " << doubleVal << std::endl;				// if it does we just print the output as is
+				std::cout << std::setprecision(4) << "float: " << floatVal << "f" << std::endl;	// FIX: need to print f and/or .0 after number
+				std::cout << std::setprecision(4) << "double: " << doubleVal << std::endl;		// if it does we just print the output as is
 			}
 		else
 		{
-
-			std::cout <<  "float: " << floatVal << ".0f" << std::endl;
-			std::cout << std::fixed;
-			std::cout <<"double: " << doubleVal << std::endl;	// if not we add a '.0' after the output
-			}
+			
+			std::cout << std::setprecision(1) << "float: " << floatVal << "f" << std::endl;
+			std::cout << std::setprecision(1) << "double: " << doubleVal << std::endl;			// if not we add a '.0' after the output
+		}
 	}
 	catch(std::exception &e)
 	{
@@ -189,7 +199,7 @@ static void foundFloat(std::string string)
 			double doubleVal = std::stod(string);
 
 			//casting to int
-			if (doubleVal >= INT_MIN && doubleVal <= INT_MAX)				// check if doubleVal would fit in an integer
+			if (doubleVal >= INT_MIN && doubleVal <= INT_MAX)			// check if doubleVal would fit in an integer
 			{
 				int intVal = static_cast<int>(doubleVal);					// if it does we do a normal static cast and output the value
 				std::cout << "int: " << intVal << std::endl;
@@ -212,30 +222,20 @@ static void foundFloat(std::string string)
 			}
 
 			
-			if (doubleVal >= INT_MIN && doubleVal <= INT_MAX)				// check if doubleVal would fit in an integer
-			{
-				int intVal = static_cast<int>(doubleVal);					// if it does we do a normal static cast and output the value
-				std::cout << "int: " << intVal << std::endl;
-			}
-			else
-				std::cout << "int : impossible" << std::endl;				// otherwise we output an impossible message
-			
-			
-			
-			
 			float floatVal = static_cast<float>(doubleVal);
 
+			std::cout << std::fixed;
+
 			doubleVal = static_cast<double>(floatVal);
-			if (checkDecimalDouble(doubleVal))									// check if the value contains decimals, if not we add .0 to the output ot
+			if (checkDecimalDouble(doubleVal))								// check if the value contains decimals, if not we add .0 to the output ot
 			{
-				std::cout << "float: " << floatVal << "f" << std::endl;			// FIX: need to print f and/or .0 after number
-				std::cout << "double: " << doubleVal << std::endl;				// if it does we just print the output as is
+				std::cout << std::setprecision(4) << "float: " << floatVal << "f" << std::endl;	// FIX: need to print f and/or .0 after number
+				std::cout << std::setprecision(4) << "double: " << doubleVal << std::endl;		// if it does we just print the output as is
 			}
 			else
 			{
-
-				std::cout << "float: " << floatVal << ".0f" << std::endl;
-				std::cout << "double: " << doubleVal << ".0" << std::endl;	// if not we add a '.0' after the output
+				std::cout << std::setprecision(1) << "float: " << floatVal << "f" << std::endl;
+				std::cout << std::setprecision(1) << "double: " << doubleVal << std::endl;			// if not we add a '.0' after the output
 			}
 	}
 	catch (std::exception &e)
@@ -263,6 +263,9 @@ void ScalarConverter::convert(const std::string& string)
 			break;
 		case INT:
 			foundInt(string);
+			break;
+		case PSEUDO:
+			foundPseudoLiteral(string);
 			break;
 		default:
 			std::cout << RED << "Parameter not recognized. Try with an INT, FLOAT, CHAR or DOUBLE" << WHITE << std::endl;

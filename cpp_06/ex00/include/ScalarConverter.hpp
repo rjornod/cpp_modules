@@ -9,10 +9,10 @@ public:
     ScalarConverter();
 
     // Copy Constructor
-    ScalarConverter(const ScalarConverter& other);
+    ScalarConverter(const ScalarConverter& other) = delete;
 
     // Copy Assignment Operator
-    ScalarConverter& operator=(const ScalarConverter& other);
+    ScalarConverter& operator=(const ScalarConverter& other) = delete;
 
     // Destructor
     ~ScalarConverter();
