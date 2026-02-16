@@ -38,7 +38,6 @@ static void foundPseudoLiteral(std::string string)
 		std::cout << "float: nanf" << std::endl;
 		std::cout << "double: nan" << std::endl;
 	}
-
 	if (string == "+inf" || string == "+inff")
 	{
 		std::cout << "float: +inff" << std::endl;
