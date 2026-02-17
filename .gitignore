@@ -27,3 +27,5 @@ form
 intern
 aform
 convert
+type
+serialize
