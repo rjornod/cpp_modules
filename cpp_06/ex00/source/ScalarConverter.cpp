@@ -18,21 +18,11 @@
 #define DOUBLE 4
 #define PSEUDO 5
 
-// Default Constructor
-ScalarConverter::ScalarConverter() {
-    // std::cout << "ScalarConverter default constructor called" << std::endl;
-}
-
-// Destructor
-ScalarConverter::~ScalarConverter() {
-    // std::cout << "ScalarConverter destructor called" << std::endl;
-}
-
 static void foundPseudoLiteral(std::string string)
 {
 
 	std::cout << "int: impossible" << std::endl;
-	std::cout << "char: impossble" << std::endl;
+	std::cout << "char: impossible" << std::endl;
 	if (string == "nan" || string == "nanf")
 	{
 		std::cout << "float: nanf" << std::endl;
@@ -50,24 +40,6 @@ static void foundPseudoLiteral(std::string string)
 	}
 }
 
-static int detectType(std::string string)
-{	std::regex charPattern(R"(^[\x21-\x2f\x3a-\x7e]$)");	// this range include all printable characters except digits
-	if (std::regex_match(string, charPattern))
-		return(CHAR);
-	std::regex floatPattern(R"(^[+-]?[0-9]+\.[0-9]+f$)");	// this range matches floats by checking for a '.' in the middle and an 'f' at the end
-	if (std::regex_match(string, floatPattern))
-		return(FLOAT);
-	std::regex doublePattern(R"(^[+-]?[0-9]+\.[0-9]+$)"); 	// this range maches a double by checking for a dot in the middle of digits
-	if (std::regex_match(string, doublePattern))
-		return (DOUBLE);
-	std::regex intPattern(R"(^[+-]?[0-9]+$)");				// this range matches only digits
-	if (std::regex_match(string, intPattern))
-	 	return(INT);
-	if (string == "nan" || string == "nanf" || string == "-inf" || string == "+inf" || string == "-inff" || string == "+inff") // if nothing matches so far we check for pseudoliterals
-		return (PSEUDO);
-	return (-1);
-}
-
 //simply checks if the character is printable and returns true or false
 static int checkIfPrintable(int character)
 {
@@ -79,6 +51,8 @@ static int checkIfPrintable(int character)
 		return 1;
 }
 
+// floor returns the largest integer value less than or equal to the argument
+// if dVal is 2.13. std::floor will give 2.0 and since 2.0 != 2.13 it returns true (has decimals)
 static bool checkDecimalDouble(double dVal)
 {
 	return (std::floor(dVal) != dVal);
@@ -87,27 +61,25 @@ static bool checkDecimalDouble(double dVal)
 
 static void foundChar(std::string string)
 {
-	std::cout << "Found a char" << std::endl;
-	char car = string[0]; 											// converting from string to char
+	char car = string[0]; 												// converting from string to char
 	std::cout << "char: " << car << std::endl;
 
-	int a = static_cast<int>(car);									// explicit casting from char to int
+	int a = static_cast<int>(car);										// explicit casting from char to int
 	std::cout << "int: " << a << std::endl;
 
-	float f = static_cast<float>(car);								// explicit casting from char to floar
+	float f = static_cast<float>(car);									// explicit casting from char to floar
 	std::cout << "float: " << f << ".0f" << std::endl;
 
-	double b = static_cast<double>(car);							// explicit casting form char to double
+	double b = static_cast<double>(car);								// explicit casting form char to double
 	std::cout << "double: " << b << ".0" << std::endl;
 }
 
 static void foundInt(std::string string)
 {
-	std::cout << "Found an int" << std::endl;
-	try {															// try catch block to prevent overflow issues
+	try {																// try catch block to prevent overflow issues
 
-		int intVal = std::stoi(string);								// converting from string to int
-		std::cout << "int: " << intVal << std::endl; 				// printing the integer value
+		int intVal = std::stoi(string);									// converting from string to int
+		std::cout << "int: " << intVal << std::endl; 					// printing the integer value
 		switch (checkIfPrintable(intVal))
 		{
 			case IMPOSSIBLE:
@@ -122,10 +94,10 @@ static void foundInt(std::string string)
 				break;
 		}
 		
-		float f = static_cast<float>(intVal);						// explicit casting from char to float
+		float f = static_cast<float>(intVal);							// explicit casting from char to float
 		std::cout << "float: " << f << ".0f" << std::endl;
 
-		double b = static_cast<double>(intVal);						// explicit casting form char to double
+		double b = static_cast<double>(intVal);							// explicit casting form char to double
 		std::cout << "double: " << b << ".0" << std::endl;
 	}
 	catch (std::exception &e)
@@ -137,8 +109,6 @@ static void foundInt(std::string string)
 
 static void foundDouble(std::string string)
 {
-	std::cout << "Found a double" << std::endl;
-	
 	try{
 		// convert from string to double
 		double doubleVal = std::stod(string);
@@ -171,16 +141,16 @@ static void foundDouble(std::string string)
 
 		std::cout << std::fixed;
 
-		if (checkDecimalDouble(doubleVal))								// check if the value contains decimals, if not we add .0 to the output ot
+		if (checkDecimalDouble(doubleVal))														// check if the value contains decimals
 			{
-				std::cout << std::setprecision(4) << "float: " << floatVal << "f" << std::endl;	// FIX: need to print f and/or .0 after number
-				std::cout << std::setprecision(4) << "double: " << doubleVal << std::endl;		// if it does we just print the output as is
+				std::cout << std::setprecision(4) << "float: " << floatVal << "f" << std::endl;	// if it does we set precision to 4 so 4 decimals will be shown
+				std::cout << std::setprecision(4) << "double: " << doubleVal << std::endl;		
 			}
 		else
 		{
 			
 			std::cout << std::setprecision(1) << "float: " << floatVal << "f" << std::endl;
-			std::cout << std::setprecision(1) << "double: " << doubleVal << std::endl;			// if not we add a '.0' after the output
+			std::cout << std::setprecision(1) << "double: " << doubleVal << std::endl;			// if not we only have precision 1 to show .0
 		}
 	}
 	catch(std::exception &e)
@@ -191,14 +161,11 @@ static void foundDouble(std::string string)
 
 static void foundFloat(std::string string)
 {
-	
-
-	std::cout << "Found a float" << std::endl;
 	try {
 			double doubleVal = std::stod(string);
 
 			//casting to int
-			if (doubleVal >= INT_MIN && doubleVal <= INT_MAX)			// check if doubleVal would fit in an integer
+			if (doubleVal >= INT_MIN && doubleVal <= INT_MAX)				// check if doubleVal would fit in an integer
 			{
 				int intVal = static_cast<int>(doubleVal);					// if it does we do a normal static cast and output the value
 				std::cout << "int: " << intVal << std::endl;
@@ -219,22 +186,21 @@ static void foundFloat(std::string string)
 				std::cout << "char: " << d << std::endl;
 				break;
 			}
-
 			
 			float floatVal = static_cast<float>(doubleVal);
 
 			std::cout << std::fixed;
 
 			doubleVal = static_cast<double>(floatVal);
-			if (checkDecimalDouble(doubleVal))								// check if the value contains decimals, if not we add .0 to the output ot
+			if (checkDecimalDouble(doubleVal))
 			{
-				std::cout << std::setprecision(4) << "float: " << floatVal << "f" << std::endl;	// FIX: need to print f and/or .0 after number
-				std::cout << std::setprecision(4) << "double: " << doubleVal << std::endl;		// if it does we just print the output as is
+				std::cout << std::setprecision(4) << "float: " << floatVal << "f" << std::endl;			// FIX: need to print f and/or .0 after number
+				std::cout << std::setprecision(4) << "double: " << doubleVal << std::endl;				// if it does we just print the output as is
 			}
 			else
 			{
 				std::cout << std::setprecision(1) << "float: " << floatVal << "f" << std::endl;
-				std::cout << std::setprecision(1) << "double: " << doubleVal << std::endl;			// if not we add a '.0' after the output
+				std::cout << std::setprecision(1) << "double: " << doubleVal << std::endl;				// if not we add a '.0' after the output
 			}
 	}
 	catch (std::exception &e)
@@ -245,6 +211,23 @@ static void foundFloat(std::string string)
 
 }
 
+static int detectType(std::string string)
+{	std::regex charPattern(R"(^[\x21-\x2f\x3a-\x7e]$)");	// this range include all printable characters except digits
+	if (std::regex_match(string, charPattern))
+		return(CHAR);
+	std::regex floatPattern(R"(^[+-]?[0-9]+\.[0-9]+f$)");	// this range matches floats by checking for a '.' in the middle and an 'f' at the end
+	if (std::regex_match(string, floatPattern))
+		return(FLOAT);
+	std::regex doublePattern(R"(^[+-]?[0-9]+\.[0-9]+$)"); 	// this range maches a double by checking for a dot in the middle of digits
+	if (std::regex_match(string, doublePattern))
+		return (DOUBLE);
+	std::regex intPattern(R"(^[+-]?[0-9]+$)");				// this range matches only digits
+	if (std::regex_match(string, intPattern))
+	 	return(INT);
+	if (string == "nan" || string == "nanf" || string == "-inf" || string == "+inf" || string == "-inff" || string == "+inff") // if nothing matches so far we check for pseudoliterals
+		return (PSEUDO);
+	return (-1);
+}
 
 void ScalarConverter::convert(const std::string& string)
 {

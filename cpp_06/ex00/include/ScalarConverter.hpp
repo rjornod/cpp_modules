@@ -4,20 +4,21 @@
 
 class ScalarConverter
 {
-public:
-    // Default Constructor
-    ScalarConverter();
+	private:
+		// Default Constructor
+		ScalarConverter() = default;
 
-    // Copy Constructor
-    ScalarConverter(const ScalarConverter& other) = delete;
+		// Copy Constructor
+		ScalarConverter(const ScalarConverter& other) = delete;
 
-    // Copy Assignment Operator
-    ScalarConverter& operator=(const ScalarConverter& other) = delete;
+		// Copy Assignment Operator
+		ScalarConverter& operator=(const ScalarConverter& other) = delete;
 
-    // Destructor
-    ~ScalarConverter();
+		// Destructor
+		~ScalarConverter() = default;
 
-	static void convert(const std::string& string);
+	public:
+		static void convert(const std::string& string);
 
 };
 

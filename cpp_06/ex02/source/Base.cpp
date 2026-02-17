@@ -69,7 +69,6 @@ void Base::identify(Base& p)
 	{
 		// std::cout << "Not type C" << std::endl;
 	}
-
 }
 
 

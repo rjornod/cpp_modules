@@ -15,9 +15,9 @@ int main(int argc, char **argv)
 		return (1);
 	}
 	
-	ScalarConverter test;
+	// ScalarConverter test;
 
-	test.convert(argv[1]);
+	ScalarConverter::convert(argv[1]);
 	
 	return (0);
 }

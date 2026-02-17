@@ -7,19 +7,18 @@ class Serializer
 {
 private:
     // Default Constructor
-    Serializer();
+    Serializer() = default;
     
     // Copy Constructor
-    Serializer(const Serializer& other);
+    Serializer(const Serializer& other) = delete;
     
     // Copy Assignment Operator
-    Serializer& operator=(const Serializer& other);
+    Serializer& operator=(const Serializer& other) = delete;
     
     // Destructor
-    ~Serializer();
+    ~Serializer() = default;
+
 public:
-
-
 	struct Data
 	{
 		int value;
@@ -27,8 +26,6 @@ public:
 
 	static Data* deserialize(uintptr_t raw);
 	static uintptr_t serialize(Data* ptr);
-
-
 };
 
 #endif
