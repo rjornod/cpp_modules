@@ -35,10 +35,16 @@ class Array
 		{
 			if (this != &other)
 			{
-				for (int i = 0; i < _size; i++)
+				delete [] _array;
+				this->_size = other._size;
+				if (this->_size > 0)
 				{
-					this->_array[i] = other._array[i];
+					this->_array = new T[_size];
+					for (int i = 0; i < _size; i++)
+						this->_array[i] = other._array[i];
 				}
+				else
+					this->_array = nullptr;
 			}
 			return *this;
 		}
@@ -48,8 +54,8 @@ class Array
 			delete[] _array;
 		};
 
-		int size()
-		{
+		 int size() const
+ 		{
 			return (_size);
 		}
 		T& operator[](int index)
