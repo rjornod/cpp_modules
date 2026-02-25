@@ -18,17 +18,6 @@ int main(int, char**)
         numbers[i] = value;
     }
 
-	Array<int> characters(MAX_VAL);
-	for (int i = 0; i < MAX_VAL; i++)
-    {
-		static int chara = 97;
-        characters[i] = chara++;
-    }
-	for (int i = 0; i < MAX_VAL; i++)
-	{
-		std::cout << GREEN << "index [" << i << "]\n" << WHITE << "char    = " << static_cast<char>(characters[i]) << std::endl;
-	}
-
 	std::cout << BLUE << "\nCOPY ASSIGNMENT TEST numberscpy(numbers)\n" << WHITE << std::endl;
 	Array<int> numberscpy(numbers);
 	for (int i = 0; i < MAX_VAL; i++)
@@ -36,9 +25,9 @@ int main(int, char**)
 		std::cout << GREEN << "index [" << i << "]\n" << WHITE << "numbers    = " << numbers[i] << "\nnumberscpy = " << numberscpy[i] << "\n" << std::endl;
 	}
 
-/************************************************************************************************************************/
+/************************************************************************************************************************/	
 	
-	std::cout << BLUE << "DEEP COPY CHECK" << WHITE << std::endl;
+	std::cout << BLUE << "\nDEEP COPY CHECK" << WHITE << std::endl;
 	for (int i = 0; i < MAX_VAL; i++)
 		numbers[i] = 1;
 	for (int i = 0; i < MAX_VAL; i++)
@@ -46,10 +35,26 @@ int main(int, char**)
 		std::cout << GREEN << "index [" << i << "]\n" << WHITE << "numbers    = " << numbers[i] << "\nnumberscpy = " << numberscpy[i] << "\n" << std::endl;
 	}
 
+
+/************************************************************************************************************************/
+	
+	std::cout << BLUE << "\nCHAR ARRAY EXAMPLE" << WHITE << std::endl;
+	Array<char> characters(MAX_VAL);
+	for (int i = 0; i < MAX_VAL; i++)
+    {
+		static int chara = 97;
+        characters[i] = chara++;
+    }
+	for (int i = 0; i < MAX_VAL; i++)
+	{
+		std::cout << GREEN << "index [" << i << "]\n" << WHITE << "char    = " << characters[i] << std::endl;
+	}
+
+
 /***********************************************************************************************************************/
 	
-	std::cout << RED << "FAILURE CHECKS\n" << WHITE << std::endl;
-	std::cout << BLUEBG << " Checking for negative index (-2) on NUMBERS " << BLACKBG << std::endl;
+	std::cout << RED << "\nFAILURE CHECKS" << WHITE << std::endl;
+	std::cout << " Checking for index[-2] in NUMBERS " << std::endl;
     try
     {
         numbers[-2] = 0;
@@ -58,7 +63,7 @@ int main(int, char**)
     {
         std::cerr << RED << "Error: " << WHITE << e.what() << '\n';
     }
-	std::cout << "\n" << BLUEBG << " Checking for index above MAX_VAL NUMBERS " << BLACKBG << std::endl;
+	std::cout << "\n Checking for index[5] in NUMBERS " << std::endl;
     try
     {
         numbers[MAX_VAL] = 0;
@@ -70,7 +75,7 @@ int main(int, char**)
 	try
 	{
 
-		std::cout << "\n" << BLUEBG << " Accessing an empty array " << BLACKBG << std::endl;
+		std::cout << "\n"  << " Accessing an empty array: emptychar[0] " << std::endl;
 		Array<char> emptychar;
 		std::cout << emptychar[0];
 	}

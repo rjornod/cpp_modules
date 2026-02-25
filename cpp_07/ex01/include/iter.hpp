@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ITER_HPP
+# define ITER_HPP
 #include <iostream>
 
 // this function template accepts non const arrays
@@ -21,3 +22,5 @@ void iter(const T *array, const size_t size, Function f)
 		f(array[i]);
 	}
 }
+
+#endif
