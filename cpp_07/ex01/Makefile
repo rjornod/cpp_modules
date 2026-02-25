@@ -1,7 +1,7 @@
 NAME = iter
 
 CC = c++
-FLAGS = -Wall -Wextra -Werror -std=c++20
+FLAGS = -Wall -Wextra -Werror -std=c++98
 INC = -I$(INC_PATH)
 
 SRC = main.cpp 

@@ -1,11 +1,8 @@
 #pragma once
 #include <iostream>
+#define RED "\033[1;31m"
+#define WHITE "\033[0m"
 
-/*
-	-values should be passed by reference so as to have modifications take place
- 	-use references when you need to modify the original, or when you want to avoid
-expensive copying with large objects 
-*/
 template<typename T>
 void swap(T& value1, T& value2)
 {
@@ -16,7 +13,7 @@ void swap(T& value1, T& value2)
 }
 
 template<typename T>
-T min(T value1, T value2)
+T min(const T& value1, const T& value2)
 {
 	if (value1 < value2)
 		return (value1);
@@ -27,7 +24,7 @@ T min(T value1, T value2)
 }
 
 template<typename T>
-T max(T value1, T value2)
+T max(const T& value1, const T& value2)
 {
 	if (value1 < value2)
 		return (value2);

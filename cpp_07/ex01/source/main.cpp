@@ -9,14 +9,13 @@
 #define YELLOW "\033[33m"
 
 
-/// @brief Prints the string passed into it by reference
-/// @param string 
-void printStringValue(std::string& string)
+
+void printStringRef(std::string& string)
 {
 	std::cout << string << std::endl;
 }
 
-void sumIntValue(int& value)
+void sumIntRef(int& value)
 {
 	static int sum;
 	sum = sum + value;
@@ -24,14 +23,12 @@ void sumIntValue(int& value)
 }
 
 
-/// @brief Prints the string passed into it by const reference
-/// @param string 
-void printStringReference(const std::string& string)
+void printStringConstRef(const std::string& string)
 {
 	std::cout << string << std::endl;
 }
 
-void printIntRef(const int& value)
+void printIntConstRef(const int& value)
 {
 	std::cout << value << '\n';
 }
@@ -39,27 +36,30 @@ void printIntRef(const int& value)
 
 int main(void)
 {
+	// ARRAYS
 	int sumArray[] = {2, 2, 2, 2, 2};
-	int printArray[] = {1, 2, 3, 4, 5 };
+	const int printArray[] = {1, 2, 3, 4, 5 };
 	std::string sArray[SIZE] = {"this", "is", "a", "string", "array"};
 
 
-	
-	std::cout << BLUE << "---- Arguments passed by value ----" << WHITE << std::endl;
+	// NON CONST REFERENCES
+	std::cout << BLUE << "---- Arguments passed by non const reference ----" << WHITE << std::endl;
 	std::cout << GREEN << "        String Array Print" << WHITE << std::endl;
 	std::cout << YELLOW << "array = {\"this\", \"is\", \"a\", \"string\", \"array\"}" << WHITE << std::endl;
-	::iter(sArray, SIZE, printStringValue);
+	::iter(sArray, SIZE, printStringRef);
 	std::cout << BLUE << "--------------------------------------" << WHITE << std::endl;
 	std::cout << GREEN << "          Int Array Sum" << WHITE << std::endl;
 	std::cout << YELLOW << "array = {2, 2, 2, 2, 2}" << WHITE << std::endl;
-	::iter(sumArray, SIZE, sumIntValue);
+	::iter(sumArray, SIZE, sumIntRef);
 
-	std::cout << BLUE << "\n---- Arguments passed by reference ----" << WHITE << std::endl;
+
+	// CONST REFERENCES
+	std::cout << BLUE << "\n---- Arguments passed by const reference ----" << WHITE << std::endl;
 	std::cout << GREEN << "           String Array Print" << WHITE << std::endl;
 	std::cout << YELLOW << "array = {\"this\", \"is\", \"a\", \"string\", \"array\"}" << WHITE << std::endl;
-	::iter(sArray, SIZE, printStringReference);
+	::iter(sArray, SIZE, printStringConstRef);
 	std::cout << BLUE << "--------------------------------------" << WHITE << std::endl;
 	std::cout << GREEN << "             Int Array Print" << WHITE << std::endl;
 	std::cout << YELLOW << "array = {1, 2, 3, 4, 5}" << WHITE << std::endl;
-	::iter(printArray, SIZE, printIntRef);
+	::iter(printArray, SIZE, printIntConstRef);
 }
