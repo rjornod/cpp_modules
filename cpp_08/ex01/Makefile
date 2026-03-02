@@ -1,11 +1,11 @@
-NAME = 
+NAME = span
 
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++20
 INC = -I$(INC_PATH)
 
-SRC = main.cpp 
-HEADERS = $(INC_PATH)/easyfind.hpp
+SRC = main.cpp Span.cpp
+HEADERS = $(INC_PATH)/Span.hpp
 SRC_PATH = source
 OBJ_PATH = obj
 INC_PATH = include
@@ -25,7 +25,7 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.cpp $(HEADERS) | $(OBJ_PATH)
 
 $(NAME): $(OBJ)
 	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
-	@echo "$(GREEN)"Successfully created the executable ./" $(WHITE)"
+	@echo "$(GREEN)"Successfully created the executable ./span" $(WHITE)"
 clean: 
 	rm -f $(OBJ)
 	rm -rf $(OBJ_PATH)
