@@ -2,6 +2,7 @@
 # define EASYFIND_HPP
 # include <iostream>
 # include <exception>
+# include <algorithm>
 
 
 class ValueNotFound : public std::exception {
@@ -14,15 +15,13 @@ class ValueNotFound : public std::exception {
 template<typename T>
 void easyfind(T intContainer, int findMe)
 {
-	for (int x : intContainer)
-	{
-		if (x == findMe)
-		{
-			std::cout << "You found me" << std::endl;
-			return;
-		}
-	}
-	throw ValueNotFound();
+	auto begin = intContainer.begin();
+	auto end = intContainer.end();
+	auto find = std::find(begin, end, findMe);
+	if ( find != end)
+		std::cout << "Found it" <<std::endl;
+	else
+		throw ValueNotFound();
 }
 
 #endif

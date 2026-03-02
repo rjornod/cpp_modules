@@ -6,12 +6,12 @@
 
 int main(void)
 {
-    std::vector<int> v = {8, 4, 5, 9};	
-	std::array<int, 5> array{1,2,3,4,5};
+    std::vector<int> v = {8, 4, 5, 2};	
+	std::array<int, 5> array{1,2,2,4,3};
 	
 	// ARRAY TEST
 	try {
-		::easyfind(array, 33);
+		::easyfind(array, 3);
 	}
 	catch (std::exception &e)
 	{
@@ -21,7 +21,7 @@ int main(void)
 
 	// VECTOR TEST
 	try {
-		::easyfind(v, 33);
+		::easyfind(v, 9);
 	}
 	catch (std::exception &e)
 	{
