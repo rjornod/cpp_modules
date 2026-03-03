@@ -14,7 +14,7 @@ class Span {
 		void 			addNumber(const unsigned int value);
 		unsigned int 	shortestSpan();
 		unsigned int 	longestSpan();
-		unsigned int	spanFill(); 									// dummy function, still TBD
+		void			spanFill(unsigned int amount); 									// dummy function, still TBD
 		class NotEnoughNumbersStored : public std::exception {
 			public:
 				const char* what() const noexcept override {

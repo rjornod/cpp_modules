@@ -1,6 +1,7 @@
 #include <Span.hpp>
 #include <algorithm>
 #include <stdexcept>
+#include <cstdlib>
 
 Span::Span(unsigned int N) : _max(N)
 {
@@ -15,10 +16,17 @@ Span::Span(const Span& other) : _max(other._max), _values(other._values)
 
 }
 
-// Span& Span::operator=(const Span& other)
-// {
-
-// }
+void Span::spanFill(unsigned int amount)
+{
+	if (_max-amount > 0)
+		std::generate_n(std::back_inserter(_values), amount, [](){ return rand();});
+	else
+	{
+		amount = _max;
+		std::generate_n(std::back_inserter(_values), amount, [](){ return rand();});
+	}
+	std::cout << "Amount of values: " << _values.size() << std::endl;
+}
 
 void Span::addNumber(unsigned int N)
 {
@@ -30,7 +38,7 @@ void Span::addNumber(unsigned int N)
 	{
     	std::cout << value << " ";
 	}
-std::cout << std::endl;
+	std::cout << std::endl;
 }
 
 unsigned int Span::shortestSpan()
