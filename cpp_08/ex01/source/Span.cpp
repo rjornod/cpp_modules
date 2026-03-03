@@ -45,7 +45,7 @@ void Span::addNumber(unsigned int N)
 	std::cout << std::endl;
 }
 
-unsigned int Span::shortestSpan()
+unsigned int Span::shortestSpan() // TO DO : shortest span needs to be fixed
 {
 	if (std::size(_values) <= 1)
 		throw NotEnoughNumbersStored();

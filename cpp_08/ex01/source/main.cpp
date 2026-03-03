@@ -1,45 +1,14 @@
 #include <Span.hpp>
 
-int	main(void)
+int main()
 {
-	// NORMAL SPAN
-	Span span(10000);
-	// try {
-	// 	span.addNumber(6);
-	// 	span.addNumber(2);
-	// 	span.addNumber(3);
-	// 	span.addNumber(454);
-	// 	span.addNumber(5);
-	// 	span.addNumber(0);
-
-	// }
-	// catch(std::exception &e)
-	// {
-	// 	std::cout << "Exception: " << e.what() << std::endl; 
-	// }
-	// std::cout << span.shortestSpan() << std::endl;
-
-	// // SPAN WITH ONE OR LESS ELEMENTS
-	// Span only1(1);
-	// try {
-
-	// 	std::cout << only1.longestSpan() << std::endl;
-	// }
-	// catch(std::exception &e)
-	// {
-	// 	std::cout << "Exception: " << e.what() << std::endl; 
-	// }
-	span.addNumber(3);
-	span.spanFill(100001111);
-	try {
-
-		Span spand(1);
-		spand.longestSpan();
-	}
-	catch (std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-
-
+Span sp = Span(5);
+sp.addNumber(6);
+sp.addNumber(3);
+sp.addNumber(17);
+sp.addNumber(10);
+sp.addNumber(11);
+std::cout << sp.shortestSpan() << std::endl;
+std::cout << sp.longestSpan() << std::endl;
+return 0;
 }
