@@ -18,11 +18,15 @@ Span::Span(const Span& other) : _max(other._max), _values(other._values)
 
 void Span::spanFill(unsigned int amount)
 {
-	if (_max-amount > 0)
-		std::generate_n(std::back_inserter(_values), amount, [](){ return rand();});
-	else
+	if (amount < _max && (_values.size() + amount) < _max) // check if amount to fill the span with would fit in _max
 	{
-		amount = _max;
+		std::generate_n(std::back_inserter(_values), amount, [](){ return rand();});
+		std::cout << "amount fits" << std::endl;
+	}
+	else  // if not I calculate how much the vector can still hold and then i fill it
+	{
+		std::cout << "amount doesnt fit" << std::endl;
+		amount = _max - _values.size();
 		std::generate_n(std::back_inserter(_values), amount, [](){ return rand();});
 	}
 	std::cout << "Amount of values: " << _values.size() << std::endl;

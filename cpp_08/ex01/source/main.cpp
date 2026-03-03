@@ -29,7 +29,17 @@ int	main(void)
 	// {
 	// 	std::cout << "Exception: " << e.what() << std::endl; 
 	// }
-	span.spanFill(9999);
+	span.addNumber(3);
+	span.spanFill(100001111);
+	try {
+
+		Span spand(1);
+		spand.longestSpan();
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 
 
 }
