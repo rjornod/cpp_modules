@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <stdexcept>
 #include <cstdlib>
+#include <numeric>
 
 Span::Span(unsigned int N) : _max(N)
 {
@@ -34,7 +35,7 @@ void Span::spanFill(unsigned int amount)
 
 void Span::addNumber(unsigned int N)
 {
-	if (std::size(_values) < _max)
+	if (_values.size() < _max)
 		_values.push_back(N);
 	else
 		throw std::out_of_range("Span is already full");
@@ -47,26 +48,33 @@ void Span::addNumber(unsigned int N)
 
 unsigned int Span::shortestSpan() // TO DO : shortest span needs to be fixed
 {
-	if (std::size(_values) <= 1)
+	if (_values.size() <= 1)
 		throw NotEnoughNumbersStored();
 	else
 	{
 		std::vector<int> temp;
+		std::vector<int>::iterator min;
+
 		temp = _values;
 		std::sort(temp.begin(), temp.end());
-		return (temp.at(1) - temp.at(0));
+		std::adjacent_difference(temp.begin(), temp.end(), temp.begin());
+		min = std::min_element(temp.begin(), temp.end());
+		return (*min);
 	}
 }
 
 unsigned int Span::longestSpan()
 {
-	if (std::size(_values) <= 1)
+	if (_values.size() <= 1)
 		throw NotEnoughNumbersStored();
 	else
 	{
-		std::vector<int> temp;
-		temp = _values;
-		std::sort(temp.begin(), temp.end());
-		return (temp.at(std::size(temp) - 1) - temp.at(0));
+		std::vector<int>::iterator max;								// iterator is like a pointer that points to an elements position in the container
+		std::vector<int>::iterator min;
+
+		max = std::max_element(_values.begin(), _values.end());
+		min = std::min_element(_values.begin(), _values.end());
+
+		return (*max - *min);										// to use the actual values we need to dereference the iterators
 	}
 }
