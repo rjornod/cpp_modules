@@ -30,7 +30,7 @@ void Span::spanFill(unsigned int amount)
 		// amount = _max - _values.size();
 		// std::generate_n(std::back_inserter(_values), amount, [](){ return rand();});
 	}
-	std::cout << "Amount of values: " << _values.size() << std::endl;
+	std::cout << "Amount of values added: " << _values.size() << std::endl;
 }
 
 void Span::addNumber(unsigned int N)
@@ -40,7 +40,7 @@ void Span::addNumber(unsigned int N)
 	if (_values.size() < _max)
 		_values.push_back(N);
 	else
-		throw std::length_error("Span is already full");
+		throw std::length_error("Container is already full");
 	for (int value : _values) 
 	{
     	std::cout << value << " ";

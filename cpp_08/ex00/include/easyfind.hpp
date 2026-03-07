@@ -13,13 +13,13 @@ class ValueNotFound : public std::exception {
 };
 
 template<typename T>
-void easyfind(T intContainer, int findMe)
+void easyfind(const T& intContainer, int findMe)
 {
 	auto begin = intContainer.begin();
 	auto end = intContainer.end();
 	auto find = std::find(begin, end, findMe);
 	if ( find != end)
-		std::cout << "Found it" <<std::endl;
+		std::cout << "Found the value "<< findMe << " in position " << std::distance(begin, find) <<std::endl;
 	else
 		throw ValueNotFound();
 }
