@@ -19,16 +19,13 @@ Span::Span(const Span& other) : _max(other._max), _values(other._values)
 
 void Span::spanFill(unsigned int amount)
 {
-	if (amount <= _max && (_values.size() + amount) <= _max) // check if amount to fill the span with would fit in _max
+	if (amount <= _max && (_values.size() + amount) <= _max) 			// check if amount to fill the span with would fit in _max
 	{
 		std::generate_n(std::back_inserter(_values), amount, [](){ return rand();});
 	}
-	else  // if not throw an exception
+	else  																// if not throw an exception
 	{
 		throw std::length_error("Span doesn't have enough space for all those elements");
-		// std::cout << "amount doesnt fit" << std::endl;
-		// amount = _max - _values.size();
-		// std::generate_n(std::back_inserter(_values), amount, [](){ return rand();});
 	}
 	std::cout << "Amount of values added: " << _values.size() << std::endl;
 }
@@ -37,11 +34,11 @@ void Span::addNumber(unsigned int N)
 {
 	if (N < 0)
 		throw std::invalid_argument("Not a valid number");
-	if (_values.size() < _max)
-		_values.push_back(N);
+	if (_values.size() < _max)									// check if container is already full	
+		_values.push_back(N);									// if not add the value
 	else
-		throw std::length_error("Container is already full");
-	for (int value : _values) 
+		throw std::length_error("Container is already full");	//if its full, throw an error
+	for (int value : _values)  									//print all the values added
 	{
     	std::cout << value << " ";
 	}

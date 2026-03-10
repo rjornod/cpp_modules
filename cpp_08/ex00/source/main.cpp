@@ -4,6 +4,8 @@
 #include <iterator>
 #include <vector>
 #include <deque>
+#define RED "\033[1;31m"
+#define WHITE "\033[0m"
 
 int main(void)
 {
@@ -13,11 +15,11 @@ int main(void)
 
 	// ARRAY TEST
 	try {
-		::easyfind(array, 3);
+		::easyfind(array, 8);
 	}
 	catch (std::exception &e)
 	{
-		    std::cout << "Exception: " << e.what() << std::endl;
+		    std::cout << RED << "Exception: " << WHITE << e.what() << std::endl;
 
 	}
 
@@ -27,7 +29,7 @@ int main(void)
 	}
 	catch (std::exception &e)
 	{
-		    std::cout << "Exception: " << e.what() << std::endl;
+		    std::cout << RED << "Exception: " << WHITE << e.what() << std::endl;
 
 	}
 
@@ -37,6 +39,6 @@ int main(void)
 	}
 	catch (std::exception &e)
 	{
-		std::cout << "Exception: " << e.what() << std::endl;
+		std::cout << RED << "Exception: " << WHITE << e.what() << std::endl;
 	}
 }

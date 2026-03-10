@@ -1,8 +1,12 @@
 #include <MutantStack.hpp>
 #include <list>
+#define RED "\033[1;31m"
+#define WHITE "\033[0m"
+#define BLUE "\033[34m"
+
 int	main(void)
 {
-	std::cout << "MutantStack test" << std::endl;
+	std::cout <<  BLUE << "MutantStack test" << WHITE << std::endl;
 	// MUTANT STACK TEST
 	MutantStack<int> mstack;
 	mstack.push(5);
@@ -25,9 +29,8 @@ int	main(void)
 	++it;
 	}
 	std::stack<int> s(mstack);
-	// return 0;
-
-	std::cout << "std::list test" << std::endl;
+	
+	std::cout << BLUE << "\nstd::list container test" << WHITE << std::endl;
 
 	//STD LIST TEST
 	std::list<int> mlist;

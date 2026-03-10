@@ -6,15 +6,18 @@
 
 
 class ValueNotFound : public std::exception {
-			public:
-				const char* what() const noexcept override {
-					return ("Value not found");
-				}
+	public:
+		const char* what() const noexcept override {
+			return ("Value not found");
+		}
 };
 
 template<typename T>
 void easyfind(const T& intContainer, int findMe)
 {
+	// basically tells the compiler to use whatever type intContainer.begin() returns
+	// if we dont use auto we can write instead:
+	// typename T::const_iterator begin
 	auto begin = intContainer.begin();
 	auto end = intContainer.end();
 	auto find = std::find(begin, end, findMe);
