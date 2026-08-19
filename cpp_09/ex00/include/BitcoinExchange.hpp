@@ -1,14 +1,23 @@
 #include <map>
 #include <iostream>
+#include <sstream>
+#include <string>
+#include <chrono>
 
 class BitcoinExchange {
+	private:
+		std::map<std::string, double> m_dataBase;
 	public:
-		BitcoinExchange();
+		BitcoinExchange(char* path);
 		~BitcoinExchange();
 		BitcoinExchange& operator=(const BitcoinExchange& other);
 		BitcoinExchange(const BitcoinExchange& other);
 		
-		void loadData(const std::string& file);
-	private:
-		std::map<std::string, float> m_dataBase;
+		void 				loadData(std::ifstream& file);
+		void 				validateInputFile(const std::string& file);
+		bool 				isDateValid(const std::string& date);
+		bool 				isValueValid(double value);
+		double			applyMultiplication(std::map<std::string, double>::iterator closestDate, double value);
+		std::map<std::string, double>::iterator	findClosestDate(const std::string& date);
+		std::chrono::year_month_day convertDate(std::string date);
 };
