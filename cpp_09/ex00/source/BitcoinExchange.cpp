@@ -46,30 +46,65 @@ void BitcoinExchange::validateInputFile(const std::string& filePath) {
 	if (isEmpty)
 		throw std::runtime_error("Input file is empty. Make sure you use a valid input file");
 	while (std::getline(file, buffer)) {
-		// int start = 0;
-		// unsigned long i = 0;
 		if (j++ == 0)
 			continue;
+		if (buffer.empty() || isStringNotWhiteSpace(buffer))
+			continue;
 		std::size_t separator = buffer.find('|');
+		// check if there is not separator
 		if (separator == std::string::npos) {
 			std::cout << RED << "ERROR: bad input => " << RESET << buffer << "\n";
+			continue;
 		}
-		std::string date = buffer.substr(0, separator);
+		// check for multiple separators
+		if (buffer.find_last_of('|') != separator) {
+			std::cout << RED << "ERROR: bad input => " << RESET << buffer << "\n";
+			continue;
+		}
+		// skip leading whitespaces
+		size_t start = buffer.find_first_not_of(" \t\n\r\f\v");
+
+		std::string date = buffer.substr(start, separator);
 		std::string valueString = buffer.substr(separator + 1);
-		
+		// check if both parameter are present
+		if (date.empty() || valueString.empty() || isStringNotWhiteSpace(date) || isStringNotWhiteSpace(valueString))	{
+			std::cout << RED << "ERROR: Missing parameter\n" << RESET;
+			continue;
+		}
+		// check if the value is a valid double
+		if (!isValueDigit(valueString)) {
+			std::cout << RED << "ERROR: Value not valid\n" << RESET;
+			continue;
+		}
 		double value = std::stod(valueString);
+		// check if the data is a valid one
 		if (!isDateValid(date))
 			std::cout << RED << "ERROR: bad input => " << RESET << date << ", " << value << "\n";
-		else if (!isValueValid(value)) 
+		else if (!isValueValid(value))
 			std::cout << "\n";
 		else {
-			
 			std::map<std::string, double>::iterator closestDate = findClosestDate(date);
-			// std::cout << "closest date to " << date << ": " << closestDate->first << "\n";
+			// date picked should be either the exact one or the closest lowest one
+			// this checks if the date is before the first date in the data.csv file
+			// in that case since there would be no date equal or lower it should thrown an error
+			if (closestDate == m_dataBase.end()) {
+   			std::cout << RED << "ERROR: no exchange rate available for this date"
+              		<< RESET << "\n";
+    		continue;
+			}
 			double result = applyMultiplication(closestDate ,value);
 			std::cout <<  date << ", " << result << "\n";
 		}
 	}
+}
+
+bool BitcoinExchange::isStringNotWhiteSpace(const std::string& string) {
+	for (size_t i = 0; i < string.size(); i++) {
+		if (!std::isspace(static_cast<unsigned char>(string[i]))) {
+			return false;
+		}
+	}
+	return true;
 }
 
 double BitcoinExchange::applyMultiplication(std::map<std::string, double>::iterator closestDate, double value) {
@@ -78,16 +113,29 @@ double BitcoinExchange::applyMultiplication(std::map<std::string, double>::itera
 }
 
 std::map<std::string, double>::iterator BitcoinExchange::findClosestDate(const std::string& date) {
-	// for (auto it = m_dataBase.begin(); it != m_dataBase.end(); it++) {
-	// 	if(it->first == date)
-	// 		return it;
-	// }
 	auto it = m_dataBase.lower_bound(date);
 	if (it != m_dataBase.end() && it->first == date)
 		return it;
 	if (it == m_dataBase.begin())
 		return m_dataBase.end();
 	return --it;
+}
+
+bool BitcoinExchange::isValueDigit(const std::string& string) {
+	int dotCount = 0;
+	size_t j = 0;
+	while (std::isspace(string[j]))
+		j++;
+	for (size_t i = j; i < string.size(); i++) {
+		if (string[i] == '.') {
+			dotCount++;
+			if (dotCount > 1)
+				return false;
+		}
+		else if (!std::isdigit(static_cast<unsigned char>(string[i])))
+			return false;
+	}
+	return true;
 }
 
 bool BitcoinExchange::isValueValid(double value) {
@@ -146,15 +194,8 @@ void BitcoinExchange::loadData(std::ifstream& file) {
 		std::string date = buffer.substr(start, i);
 		start = i + 1;
 		double value = std::stod(buffer.substr(start));
-		// if (!isDateValid(date)) {
-		// 	std::cout << "ERROR: bad input => " << date << ", " << value << "\n";
-			// return;
-		// }
 		m_dataBase.emplace(date, value);
 	}
-	// for (auto it = m_dataBase.begin(); it != m_dataBase.end(); it++) {
-	// 	std::cout << std::fixed << std::setprecision(2) << it->first<< ", " << it->second << "\n";
-	// }
 }
 
 
