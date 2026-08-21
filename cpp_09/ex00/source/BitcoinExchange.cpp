@@ -13,7 +13,6 @@ BitcoinExchange::BitcoinExchange(char* path) {
 	std::ifstream file("data.csv");
 	loadData(file);
 	try {
-		// std::ifstream inputFile()
 		validateInputFile(path);
 	}
 	catch (std::exception& e) {
@@ -37,12 +36,10 @@ void BitcoinExchange::validateInputFile(const std::string& filePath) {
 	std::ifstream file(filePath);
 	std::string		buffer;
 	int						j = 0;
-	// check if file exists and can be opened
-	if (!file) {
+	if (!file) {																																									// check if file exists and can be opened
 		throw std::runtime_error("Can't open specified input file.");
 	}
-	// checks if file is empty
-	bool isEmpty = file.peek() == EOF;
+	bool isEmpty = file.peek() == EOF;																														// checks if file is empty
 	if (isEmpty)
 		throw std::runtime_error("Input file is empty. Make sure you use a valid input file");
 	while (std::getline(file, buffer)) {
@@ -51,33 +48,28 @@ void BitcoinExchange::validateInputFile(const std::string& filePath) {
 		if (buffer.empty() || isStringNotWhiteSpace(buffer))
 			continue;
 		std::size_t separator = buffer.find('|');
-		// check if there is not separator
-		if (separator == std::string::npos) {
+		if (separator == std::string::npos) {																												// check if there is not separator
 			std::cout << RED << "ERROR: bad input => " << RESET << buffer << "\n";
 			continue;
 		}
-		// check for multiple separators
-		if (buffer.find_last_of('|') != separator) {
+		if (buffer.find_last_of('|') != separator) {																								// check for multiple separators
 			std::cout << RED << "ERROR: bad input => " << RESET << buffer << "\n";
 			continue;
 		}
-		// skip leading whitespaces
-		size_t start = buffer.find_first_not_of(" \t\n\r\f\v");
-
+		size_t start = buffer.find_first_not_of(" \t\n\r\f\v");																			// skip leading whitespaces
 		std::string date = buffer.substr(start, separator);
+		size_t end = date.find_first_of(" \t\n\r\f\v");																							//skip trailing whitespaces
+		date = date.substr(0, end);
 		std::string valueString = buffer.substr(separator + 1);
-		// check if both parameter are present
-		if (date.empty() || valueString.empty() || isStringNotWhiteSpace(date) || isStringNotWhiteSpace(valueString))	{
+		if (date.empty() || valueString.empty() || isStringNotWhiteSpace(date) || isStringNotWhiteSpace(valueString))	{				// check if both parameters are present
 			std::cout << RED << "ERROR: Missing parameter\n" << RESET;
 			continue;
 		}
-		// check if the value is a valid double
-		if (!isValueDigit(valueString)) {
+		if (!isValueDigit(valueString)) {																														// check if the value is a positive float
 			std::cout << RED << "ERROR: Value not valid\n" << RESET;
 			continue;
 		}
 		double value = std::stod(valueString);
-		// check if the data is a valid one
 		if (!isDateValid(date))
 			std::cout << RED << "ERROR: bad input => " << RESET << date << ", " << value << "\n";
 		else if (!isValueValid(value))
@@ -98,6 +90,9 @@ void BitcoinExchange::validateInputFile(const std::string& filePath) {
 	}
 }
 
+/**
+ * Checks if string passed only contains white spaces
+ */
 bool BitcoinExchange::isStringNotWhiteSpace(const std::string& string) {
 	for (size_t i = 0; i < string.size(); i++) {
 		if (!std::isspace(static_cast<unsigned char>(string[i]))) {
@@ -112,6 +107,11 @@ double BitcoinExchange::applyMultiplication(std::map<std::string, double>::itera
 	return result;
 }
 
+/**
+ * Finds the closest date by using lower_bound. That returns the first element that is not lower than the key
+ * So to return the next closest lowest date, it needs to return --it
+ * lower_bound on 2011-02-04 on give us an iterator to 2011-02-05. --it would then get us 2011-02-03
+ */
 std::map<std::string, double>::iterator BitcoinExchange::findClosestDate(const std::string& date) {
 	auto it = m_dataBase.lower_bound(date);
 	if (it != m_dataBase.end() && it->first == date)
@@ -121,6 +121,9 @@ std::map<std::string, double>::iterator BitcoinExchange::findClosestDate(const s
 	return --it;
 }
 
+/**
+ * Checks if value is a positive float
+ */
 bool BitcoinExchange::isValueDigit(const std::string& string) {
 	int dotCount = 0;
 	size_t j = 0;
@@ -138,6 +141,9 @@ bool BitcoinExchange::isValueDigit(const std::string& string) {
 	return true;
 }
 
+/**
+ * Checks if the value is between 0 and 1000
+ */
 bool BitcoinExchange::isValueValid(double value) {
 	if (value < 0){
 		std::cout << RED << "ERROR: not a positive number" << RESET;
@@ -150,6 +156,9 @@ bool BitcoinExchange::isValueValid(double value) {
 	return true;
 }
 
+/**
+ * Converts the date from a string into a std::chrono::year_month_day type
+ */
 std::chrono::year_month_day BitcoinExchange::convertDate(std::string string) {
 	int year;
 	unsigned int month;
@@ -158,12 +167,11 @@ std::chrono::year_month_day BitcoinExchange::convertDate(std::string string) {
 	char dash2;
 
 	std::istringstream stream(string);
-	stream >> year >> dash1 >> month >> dash2 >> day; 
-	// ||
-	// 		dash1 != '-' ||
-	// 		dash2 != '-' ||
-	// 		!stream.eof())
-	// 	return std::chrono::year_month_day{}; // return a default constructed date which will be read as invalid by date.ok()
+	if (!(stream >> year >> dash1 >> month >> dash2 >> day) ||
+			dash1 != '-' ||
+			dash2 != '-' ||
+			!stream.eof())
+		return std::chrono::year_month_day{}; // return a default constructed date which will be read as invalid by date.ok()
 	// constructs chrono::year_month_day object with the values we got above
 	const std::chrono::year_month_day date {
         std::chrono::year{year},
@@ -173,6 +181,9 @@ std::chrono::year_month_day BitcoinExchange::convertDate(std::string string) {
 	return date;
 }
 
+/**
+ * Checks if the converted date is valid or not with date.ok()
+ */
 bool BitcoinExchange::isDateValid(const std::string& string) {
 	std::chrono::year_month_day date = convertDate(string);
 	// std::cout << "Year: " << static_cast<int>(date.year())
@@ -181,6 +192,9 @@ bool BitcoinExchange::isDateValid(const std::string& string) {
 	return date.ok();
 }
 
+/**
+ * Takes the data from the opened file and stores it into the m_dataBase map
+ */
 void BitcoinExchange::loadData(std::ifstream& file) {
 	std::string	buffer;
 	int 				j = 0;
@@ -197,7 +211,3 @@ void BitcoinExchange::loadData(std::ifstream& file) {
 		m_dataBase.emplace(date, value);
 	}
 }
-
-
-
-
