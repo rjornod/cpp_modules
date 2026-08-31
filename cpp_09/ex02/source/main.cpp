@@ -1,9 +1,14 @@
 #include "PmergeMe.hpp"
 
 int main(int argc, char** argv) {
-	if (argc < 2) {
-		std::cerr << "No argument provided" << std::endl;
-		return -1;
+
+	try {
+		if (argc != 2)
+			throw std::runtime_error("Invalid argument amount. Usage ./PmergeMe \"3 1 10 4 2 \"");
+		PmergeMe pmergeMe(argv[1]);
 	}
+		catch(const std::exception& e) {
+			std::cerr << e.what() << "\n";
+		}
 
 }

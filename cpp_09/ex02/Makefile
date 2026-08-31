@@ -3,7 +3,7 @@ NAME = PmergeMe
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++20
 
-SRC = main.cpp RPN.cpp
+SRC = main.cpp PmergeMe.cpp
 SRC_PATH = source
 OBJ_PATH = obj
 INC_PATH = include
@@ -23,7 +23,7 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.cpp $(HEADERS) | $(OBJ_PATH)
 
 $(NAME): $(OBJ)
 	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
-	@echo "$(GREEN)"Successfully created the executable ./RPN" $(WHITE)"
+	@echo "$(GREEN)"Successfully created the executable ./PmergeMe" $(WHITE)"
 clean: 
 	rm -f $(OBJ)
 	rm -rf $(OBJ_PATH)
