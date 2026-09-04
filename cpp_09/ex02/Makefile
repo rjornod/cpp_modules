@@ -4,6 +4,7 @@ CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++20
 
 SRC = main.cpp PmergeMe.cpp
+HEADERS = include/PmergeMe.hpp
 SRC_PATH = source
 OBJ_PATH = obj
 INC_PATH = include
